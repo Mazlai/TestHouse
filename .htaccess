@@ -1,0 +1,5 @@
+RewriteEngine On
+
+# Si l'utilisateur accède à un dossier spécifique, redirigez-le vers index.html
+RewriteCond %{REQUEST_URI} ^/(css|js|images)/ [NC]
+RewriteRule ^(.*)$ /index.html [L]
