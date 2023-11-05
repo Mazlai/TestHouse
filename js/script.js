@@ -11,17 +11,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }, 0);
 
-    // Ajoutez une fonction pour le bouton "Son"
     var soundButton = document.querySelector('.sound-button');
-    soundButton.addEventListener('click', function() {
-        // Ajoutez ici la logique pour activer/désactiver le son
-        alert('Le son a été activé/désactivé !');
-    });
+    var soundOn = true;
 
-    // Ajoutez une fonction pour le bouton "Jouer"
-    var playButton = document.querySelector('.play-button');
-    playButton.addEventListener('click', function() {
-        // Ajoutez ici la logique pour lancer le jeu
-        alert('Le jeu a commencé !');
+    soundButton.addEventListener('click', function() {
+        soundOn = !soundOn;
+        soundButton.classList.toggle('sound-off', !soundOn);
+        soundButton.classList.toggle('sound-on', soundOn);
+
+        /*if (soundOn) {
+            
+            // Activer le son ici
+        } else {
+            
+            // Désactiver le son ici
+        }*/
     });
 });
