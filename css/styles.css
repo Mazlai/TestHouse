@@ -23,6 +23,10 @@ footer {
     width: 100%;
 }
 
+.hexcolor {
+    color:#ffcc00;
+}
+
 /* Écran de chargement superposé à l'écran de base*/
 
 .loading-screen {
@@ -154,7 +158,6 @@ footer {
     border-radius: 5px;
     padding:10px;
     background-color: #333;
-
     width: 50%;
     height: 50%;
     object-fit: cover;
@@ -163,7 +166,36 @@ footer {
     cursor:pointer;
 }
 
-/* Boutons */
+#color-container {
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top:50px;
+    padding:10px 0 10px 0;
+    border-radius: 30px;
+    width:150px;
+    background-color:rgba(255, 204, 0, 0.9);
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+#color-home {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width:40px;
+    height:40px;
+}
+
+#color-home::-webkit-color-swatch {
+    border-radius: 50%;
+}
+
+/* Boutons & inputs */
 
 .return-button {
     position: absolute;
@@ -204,7 +236,6 @@ footer {
 .sound-button.sound-off {
     background-image: url('../images/deaf.png');
 }
-
 
 .main-button {
     font-family: 'IBM Plex Mono', monospace;

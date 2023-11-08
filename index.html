@@ -6,6 +6,7 @@
     <title>TestHouse - Accueil</title>
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="icon" type="image/png" href="./images/building.png" />
+    <script src="./js/colorscript.js"></script>
 </head>
 <body>
     <div class="loading-screen">
@@ -21,6 +22,10 @@
             <div class="button-container">
                 <button class="main-button" id="game-button">Jouer</button>
                 <button class="main-button" id="rules-button">Règles</button>
+                <div id="color-container">
+                    <input type="color" name="couleur" id="color-home">
+                    <label for="color-home" id="label-color">Changer la couleur</label>
+                </div>
             </div>
         </div>
         <div class="overlay" id="overlay"></div>
@@ -36,8 +41,10 @@
     </div>
     
     <footer>
-        <p>© 2023 TestHouse. Tous droits réservés.</p>
+        <p>©<span class="hexcolor">A</span><span id="yearhexcolor">2023</span><span class="hexcolor">C</span>TestHouse. Tous droits réservés.</p>
     </footer>
     <script src="./js/script.js"></script>
+    <script src="./js/colorscript.js"></script>
+    
 </body>
 </html>
