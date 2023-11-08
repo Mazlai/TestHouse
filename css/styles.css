@@ -123,7 +123,7 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     z-index: 2;
     display: none;
 }
@@ -159,13 +159,30 @@ footer {
     height: 50%;
     object-fit: cover;
     position: absolute;
-    top: 0;
-    left: 0;
     transition: transform 0.5s;
 }
 
-
 /* Boutons */
+
+.return-button {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffcc00;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.return-button:hover {
+    background-color: #e6b800;
+}
 
 .sound-button {
     background-size: cover;
@@ -177,7 +194,6 @@ footer {
     border: none;
     cursor: pointer;
     background-color: #ffcc00;
-
 }
 
 .sound-button.sound-on {
