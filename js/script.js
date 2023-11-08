@@ -28,3 +28,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }*/
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    var gameButton = document.getElementById('game-button');
+    var overlay = document.getElementById('overlay');
+    var imageContainer = document.getElementById('image-container');
+
+    gameButton.addEventListener('click', function() {
+        overlay.style.display = 'block';
+        imageContainer.style.display = 'flex';
+    });
+
+    overlay.addEventListener('click', function() {
+        overlay.style.display = 'none';
+        imageContainer.style.display = 'none';
+    });
+});
