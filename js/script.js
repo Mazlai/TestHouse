@@ -1,3 +1,14 @@
+var whoAmIContainer = document.getElementById('whoami');
+var mysteriesContainer = document.getElementById('mysteries');
+
+whoAmIContainer.addEventListener('click', function() {
+    window.location.href = 'whoami.html';
+});
+
+mysteriesContainer.addEventListener('click', function() {
+    window.location.href = 'mysteries.html';
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
         var loadingScreen = document.querySelector('.loading-screen');
@@ -29,6 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+
 document.addEventListener('DOMContentLoaded', function() {
     var gameButton = document.getElementById('game-button');
     var imageContainer = document.getElementById('image-container');
@@ -44,3 +56,4 @@ document.addEventListener('DOMContentLoaded', function() {
         imageContainer.style.display = 'none';
     });
 });
+

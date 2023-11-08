@@ -160,6 +160,7 @@ footer {
     object-fit: cover;
     position: absolute;
     transition: transform 0.5s;
+    cursor:pointer;
 }
 
 /* Boutons */
