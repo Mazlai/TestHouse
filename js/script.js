@@ -1,18 +1,24 @@
+//Variables
+var loadingScreen = document.querySelector('.loading-screen');
 var whoAmIContainer = document.getElementById('whoami');
 var mysteriesContainer = document.getElementById('mysteries');
+var soundButton = document.querySelector('.sound-button');
+var soundOn = true;
+var audioElement = new Audio('audio/wind.mp3');
 
+// Redirection vers le jeu "qui-est-ce"
 whoAmIContainer.addEventListener('click', function() {
     window.location.href = 'whoami.html';
 });
 
+// Redirection vers le jeu "mystères"
 mysteriesContainer.addEventListener('click', function() {
     window.location.href = 'mysteries.html';
 });
 
+// Effet de chargement de la page d'accueil
 document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
-        var loadingScreen = document.querySelector('.loading-screen');
-        
         setTimeout(function() {
             loadingScreen.style.animation = 'fade 1s forwards';
             
@@ -20,24 +26,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 loadingScreen.style.pointerEvents = 'none';
             }, 1000);
         }, 3000);
-    }, 0);
+    }, 0)
+});
 
-    var soundButton = document.querySelector('.sound-button');
-    var soundOn = true;
+// Joue le son automatiquement au chargement de la page
+window.onload = function() {
+  audioElement.play();
+};
 
-    soundButton.addEventListener('click', function() {
-        soundOn = !soundOn;
-        soundButton.classList.toggle('sound-off', !soundOn);
-        soundButton.classList.toggle('sound-on', soundOn);
+soundButton.addEventListener('click', function() {
+    soundOn = !soundOn;
+    soundButton.classList.toggle('sound-off', !soundOn);
+    soundButton.classList.toggle('sound-on', soundOn);
 
-        /*if (soundOn) {
-            
-            // Activer le son ici
-        } else {
-            
-            // Désactiver le son ici
-        }*/
-    });
+    if (soundOn) {
+        audioElement.play();
+        audioElement.volume = 0.2;
+    } else {
+        audioElement.pause();
+    }
 });
 
 
