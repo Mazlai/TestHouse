@@ -1,17 +1,17 @@
 //Variables
-var loadingScreen = document.querySelector('.loading-screen');
+let loadingScreen = document.querySelector('.loading-screen');
 
-var whoAmIContainer = document.getElementById('whoami');
-var mysteriesContainer = document.getElementById('mysteries');
+let whoAmIContainer = document.getElementById('whoami');
+let mysteriesContainer = document.getElementById('mysteries');
 
-var soundButton = document.querySelector('.sound-button');
-var soundOn = true;
-var audioElement = new Audio('audio/wind.mp3');
+let soundButton = document.querySelector('.sound-button');
+let soundOn = true;
+let audioElement = new Audio('audio/wind.mp3');
 audioElement.autoplay = true;
 
-var gameButton = document.getElementById('game-button');
-var imageContainer = document.getElementById('image-container');
-var returnButton = document.getElementById('return-button');
+let gameButton = document.getElementById('game-button');
+let imageContainer = document.getElementById('image-container');
+let returnButton = document.getElementById('return-button');
 
 // Redirection vers le jeu "qui-est-ce"
 whoAmIContainer.addEventListener('click', function() {
