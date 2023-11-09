@@ -1,5 +1,39 @@
-canvas {
-  border: 1px solid black;
-  width: 400px;
-  height: 400px;
+body {
+  background-color: #ffffaf;
+  text-align: center;
+}
+
+#game {
+  display: inline-block;
+  text-align: center;
+  background-color: blue;
+}
+
+.col {
+  width:50px;
+  height:50px;
+  border-radius: 50%;
+  background-color: #ffffaf;
+  display: inline-block;
+  margin: 5px;
+}
+
+.col.empty {
+  cursor:pointer;
+}
+
+.col.red {
+  background-color: red;
+}
+
+.col.yellow {
+  background-color: yellow;
+}
+
+.col.pred {
+  background-color: darkred;
+}
+
+.col.pyellow {
+  background-color: darkgoldenrod;
 }
