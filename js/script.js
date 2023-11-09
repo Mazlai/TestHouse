@@ -7,7 +7,6 @@ let mysteriesContainer = document.getElementById('mysteries');
 let soundButton = document.querySelector('.sound-button');
 let soundOn = true;
 let audioElement = new Audio('audio/wind.mp3');
-audioElement.autoplay = true;
 
 let gameButton = document.getElementById('game-button');
 let imageContainer = document.getElementById('image-container');
@@ -35,13 +34,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }, 0)
 });
-
-// Joue le son automatiquement au chargement de la page
-window.onload = function() {
-  audioElement.play();
-  audioElement.volume = 0.2;
-  audioElement.loop = true;
-};
 
 // Bouton pour activer/désactiver le son
 soundButton.addEventListener('click', function() {
