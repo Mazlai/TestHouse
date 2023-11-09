@@ -1,10 +1,16 @@
 //Variables
 var loadingScreen = document.querySelector('.loading-screen');
+
 var whoAmIContainer = document.getElementById('whoami');
 var mysteriesContainer = document.getElementById('mysteries');
+
 var soundButton = document.querySelector('.sound-button');
 var soundOn = true;
 var audioElement = new Audio('audio/wind.mp3');
+
+var gameButton = document.getElementById('game-button');
+var imageContainer = document.getElementById('image-container');
+var returnButton = document.getElementById('return-button');
 
 // Redirection vers le jeu "qui-est-ce"
 whoAmIContainer.addEventListener('click', function() {
@@ -34,6 +40,7 @@ window.onload = function() {
   audioElement.play();
 };
 
+// Bouton pour activer/désactiver le son
 soundButton.addEventListener('click', function() {
     soundOn = !soundOn;
     soundButton.classList.toggle('sound-off', !soundOn);
@@ -47,12 +54,8 @@ soundButton.addEventListener('click', function() {
     }
 });
 
-
+// Affiche l'overlay et les images du jeu
 document.addEventListener('DOMContentLoaded', function() {
-    var gameButton = document.getElementById('game-button');
-    var imageContainer = document.getElementById('image-container');
-    var returnButton = document.getElementById('return-button');
-
     gameButton.addEventListener('click', function() {
         overlay.style.display = 'block';
         imageContainer.style.display = 'flex';
