@@ -92,7 +92,7 @@ footer {
     height: 100%;
     top: 0;
     left: 0;
-    background-image: url('../images/tower.gif');
+    background-image: url('../images/home/tower.gif');
     background-size: cover;
     z-index: 1; /* Image animée en dessous de l'écran de chargement */
 }
@@ -230,11 +230,11 @@ footer {
 }
 
 .sound-button.sound-on {
-    background-image: url('../images/sound.png');
+    background-image: url('../images/home/sound.png');
 }
 
 .sound-button.sound-off {
-    background-image: url('../images/deaf.png');
+    background-image: url('../images/home/deaf.png');
 }
 
 .main-button {

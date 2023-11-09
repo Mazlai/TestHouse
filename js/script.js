@@ -19,7 +19,7 @@ whoAmIContainer.addEventListener('click', function() {
 
 // Redirection vers le jeu "mystères"
 mysteriesContainer.addEventListener('click', function() {
-    window.location.href = 'mysteries.html';
+    window.location.href = 'p4.html';
 });
 
 // Effet de chargement de la page d'accueil
