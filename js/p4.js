@@ -1,4 +1,5 @@
 class P4 {
+  //Convertit en JS
   constructor(selector) {
     this.col = 7;
     this.row = 6;
@@ -10,6 +11,7 @@ class P4 {
     this.checkWin();
   }
 
+  //Convertit en JS
   createGrid() {
     const board = document.querySelector(this.selector);
     for (let row = 0; row < this.row; row++) {
@@ -30,21 +32,21 @@ class P4 {
     const board = $(this.selector);
     const that = this;
     function lastCase(col) {
-      const $cells = $(`.col[data-col='${col}']`);
-      for (let i = $cells.length - 1; i >= 0; i--) {
-        const $cell = $($cells[i]);
-        if ($cell.hasClass('empty')) {
-          return $cell;
+      const cells = $(`.col[data-col='${col}']`);
+      for (let i = cells.length - 1; i >= 0; i--) {
+        const cell = $(cells[i]);
+        if (cell.hasClass('empty')) {
+          return cell;
         }
       }
       return null;
     }
 
     board.on('mouseenter', '.col.empty', function() {
-      const $col = $(this).data('col');
-      const $lastEmptyCell = lastCase($col);
-      if($lastEmptyCell != null) {
-        $lastEmptyCell.addClass(`p${that.player}`);
+      const col = this.dataset.col;
+      const lastEmptyCell = lastCase(col);
+      if(lastEmptyCell != null) {
+        lastEmptyCell.addClass(`p${that.player}`);
       }
     });
     
@@ -56,15 +58,13 @@ class P4 {
     });
 
     board.on('click', '.col.empty', function() {
-      const $col = $(this).data('col');
-      const $lastEmptyCell = lastCase($col);
-      $lastEmptyCell.addClass(`${that.player}`).removeClass(`empty p${that.player}`).data('player', `${that.player}`);
+      const col = this.dataset.col;
+      const lastEmptyCell = lastCase(col);
+      lastEmptyCell.addClass(`${that.player}`).removeClass(`empty p${that.player}`).data('player', `${that.player}`);
 
-      const winner = that.checkWin($lastEmptyCell.data('row'), $lastEmptyCell.data('col'));
-      console.log(winner);
+      const winner = that.checkWin(lastEmptyCell.data('row'), lastEmptyCell.data('col'));
+      
       that.player = (that.player === 'red') ? 'yellow' : 'red';
-
-      console.log(that.player);
 
       if(winner) {
         alert(`Player ${winner} has won!`);
@@ -77,7 +77,7 @@ class P4 {
   checkWin(row, col) {
     const that = this;
 
-    function $getCell(i, j) {
+    function getCell(i, j) {
       return $(`.col[data-row='${i}'][data-col='${j}']`);
     }
 
@@ -85,16 +85,17 @@ class P4 {
       let total = 0;
       let i = row + direction.i;
       let j = col + direction.j;
-      var $next = $getCell(i, j);
-      while(i >= 0 && i < that.row && j >= 0 && j < that.col && $next.data('player') === that.player) {
+      let next = getCell(i, j);
+      while(i >= 0 && i < that.row && j >= 0 && j < that.col && next.data('player') === that.player) {
         total++;
         i += direction.i;
         j += direction.j;
-        $next = $getCell(i, j);
+        next = getCell(i, j);
       }
       return total;
     }
 
+    //Convertit en JS
     function checkWinDirection(directionA, directionB) {
       const totalA = checkDirection(directionA);
       const totalB = checkDirection(directionB);
