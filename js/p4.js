@@ -6,7 +6,7 @@ class P4 {
     this.player = 'red';
 
     this.createGrid();
-    this.listenForEvent();
+    this.listenForEvents();
     this.checkWin();
   }
 
@@ -26,8 +26,8 @@ class P4 {
     }
   }
 
-  listenForEvent() {
-    const board = $(this.selector);
+  listenForEvents() {
+    const board = document.querySelector(this.selector);
 
     const lastCase = col => {
       const cells = document.querySelectorAll(`.col[data-col="${col}"]`);
@@ -40,44 +40,51 @@ class P4 {
       return null;
     };
 
-    board.on('mouseenter', '.col.empty', (event) => {
-      const col = event.currentTarget.dataset.col;
-      const lastEmptyCell = lastCase(col);
-
-      console.log(lastEmptyCell);
-
-      if (lastEmptyCell != null) {
-        lastEmptyCell.classList.add(`p${this.player}`);
+    board.addEventListener('mouseenter', (event) => {
+      const target = event.target;
+      const colElement = target.closest('.col.empty');
+    
+      if (colElement) {
+        const col = colElement.dataset.col;
+        const lastEmptyCell = lastCase(col);
+    
+        if (lastEmptyCell) {
+          lastEmptyCell.classList.add(`p${this.player}`);
+        }
       }
-    });
+    }, true);
 
-    board.on('mouseleave', '.col', () => {
+    board.addEventListener('mouseleave', () => {
       const cells = document.querySelectorAll('.col');
       cells.forEach(cell => {
         cell.classList.remove(`p${this.player}`);
       });
-    });
+    }, true);
 
-    board.on('click', '.col.empty', (event) => {
-      const col = event.currentTarget.dataset.col;
-      const lastEmptyCell = lastCase(col);
-      lastEmptyCell.classList.add(`${this.player}`);
-      lastEmptyCell.classList.remove('empty', `p${this.player}`);
-      lastEmptyCell.dataset.player = this.player;
+    board.addEventListener('click', (event) => {
+      const target = event.target;
+      if (target.classList.contains('col') && target.classList.contains('empty')) {
+        const col = target.dataset.col;
+        const lastEmptyCell = lastCase(col);
 
-      const winner = this.checkWin(parseInt(lastEmptyCell.dataset.row), parseInt(lastEmptyCell.dataset.col));
+        lastEmptyCell.classList.add(`${this.player}`);
+        lastEmptyCell.classList.remove('empty', `p${this.player}`);
+        lastEmptyCell.dataset.player = this.player;
 
-      this.player = (this.player === 'red') ? 'yellow' : 'red';
+        const winner = this.checkWin(parseInt(lastEmptyCell.dataset.row), parseInt(lastEmptyCell.dataset.col));
 
-      if (winner) {
-        alert(`Player ${winner} has won!`);
-        document.getElementById('restart').style.visibility = 'visible';
+        this.player = (this.player === 'red') ? 'yellow' : 'red';
+
+        if (winner) {
+          alert(`Player ${winner} has won!`);
+          document.getElementById('restart').style.visibility = 'visible';
+        }
       }
     });
   }
 
   checkWin(row, col) {
-    const getCell = (i, j) => document.querySelector(`.col[data-row='${i}'][data-col='${j}']`);
+    const getCell = (i, j) => document.querySelector(`.col[data-row="${i}"][data-col="${j}"]`);
 
     const checkDirection = direction => {
       let total = 0;
@@ -104,10 +111,10 @@ class P4 {
 
     const checkHorizontal = () => checkWinDirection({ i: 0, j: -1 }, { i: 0, j: 1 });
 
-    const checkDiagonal1 = () => checkWinDirection({ i: 1, j: 1 }, { i: -1, j: -1 });
+    const checkPremiereDiagonale = () => checkWinDirection({ i: 1, j: 1 }, { i: -1, j: -1 });
 
-    const checkDiagonal2 = () => checkWinDirection({ i: 1, j: -1 }, { i: -1, j: 1 });
+    const checkDeuxiemeDiagonale = () => checkWinDirection({ i: 1, j: -1 }, { i: -1, j: 1 });
 
-    return checkVertical() || checkHorizontal() || checkDiagonal1() || checkDiagonal2();
+    return checkVertical() || checkHorizontal() || checkPremiereDiagonale() || checkDeuxiemeDiagonale();
   }
 }
