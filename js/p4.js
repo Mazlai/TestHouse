@@ -1,5 +1,4 @@
 class P4 {
-  //Convertit en JS
   constructor(selector) {
     this.col = 7;
     this.row = 6;
@@ -11,7 +10,6 @@ class P4 {
     this.checkWin();
   }
 
-  //Convertit en JS
   createGrid() {
     const board = document.querySelector(this.selector);
     for (let row = 0; row < this.row; row++) {
@@ -30,8 +28,8 @@ class P4 {
 
   listenForEvent() {
     const board = $(this.selector);
-    const that = this;
-    function lastCase(col) {
+
+    const lastCase = col => {
       const cells = $(`.col[data-col='${col}']`);
       for (let i = cells.length - 1; i >= 0; i--) {
         const cell = $(cells[i]);
@@ -40,88 +38,70 @@ class P4 {
         }
       }
       return null;
-    }
+    };
 
-    board.on('mouseenter', '.col.empty', function() {
-      const col = this.dataset.col;
+    board.on('mouseenter', '.col.empty', (event) => {
+      const col = event.currentTarget.dataset.col;
       const lastEmptyCell = lastCase(col);
-      if(lastEmptyCell != null) {
-        lastEmptyCell.addClass(`p${that.player}`);
+      if (lastEmptyCell != null) {
+        lastEmptyCell.addClass(`p${this.player}`);
       }
     });
-    
-    board.on('mouseleave', '.col', function() {
+
+    board.on('mouseleave', '.col', () => {
       const cells = document.querySelectorAll('.col');
-      cells.forEach(function(cell) {
-        cell.classList.remove(`p${that.player}`);
+      cells.forEach(cell => {
+        cell.classList.remove(`p${this.player}`);
       });
     });
 
-    board.on('click', '.col.empty', function() {
-      const col = this.dataset.col;
+    board.on('click', '.col.empty', (event) => {
+      const col = event.currentTarget.dataset.col;
       const lastEmptyCell = lastCase(col);
-      lastEmptyCell.addClass(`${that.player}`).removeClass(`empty p${that.player}`).data('player', `${that.player}`);
+      lastEmptyCell.addClass(`${this.player}`).removeClass(`empty p${this.player}`).data('player', `${this.player}`);
 
-      const winner = that.checkWin(lastEmptyCell.data('row'), lastEmptyCell.data('col'));
-      
-      that.player = (that.player === 'red') ? 'yellow' : 'red';
+      const winner = this.checkWin(lastEmptyCell.data('row'), lastEmptyCell.data('col'));
 
-      if(winner) {
+      this.player = (this.player === 'red') ? 'yellow' : 'red';
+
+      if (winner) {
         alert(`Player ${winner} has won!`);
         document.getElementById('restart').style.visibility = 'visible';
-        return;
       }
     });
   }
 
   checkWin(row, col) {
-    const that = this;
+    const getCell = (i, j) => $(`.col[data-row='${i}'][data-col='${j}']`);
 
-    function getCell(i, j) {
-      return $(`.col[data-row='${i}'][data-col='${j}']`);
-    }
-
-    function checkDirection(direction) {
+    const checkDirection = direction => {
       let total = 0;
       let i = row + direction.i;
       let j = col + direction.j;
       let next = getCell(i, j);
-      while(i >= 0 && i < that.row && j >= 0 && j < that.col && next.data('player') === that.player) {
+      while (i >= 0 && i < this.row && j >= 0 && j < this.col && next.data('player') === this.player) {
         total++;
         i += direction.i;
         j += direction.j;
         next = getCell(i, j);
       }
       return total;
-    }
+    };
 
-    //Convertit en JS
-    function checkWinDirection(directionA, directionB) {
+    const checkWinDirection = (directionA, directionB) => {
       const totalA = checkDirection(directionA);
       const totalB = checkDirection(directionB);
       const total = 1 + totalA + totalB;
-      if (total >= 4) {
-        return that.player;
-      } else {
-        return null;
-      }
-    }
+      return (total >= 4) ? this.player : null;
+    };
 
-    function checkVertical() {
-      return checkWinDirection({i: -1, j: 0}, {i: 1, j: 0});
-    }
+    const checkVertical = () => checkWinDirection({ i: -1, j: 0 }, { i: 1, j: 0 });
 
-    function checkHorizontal() {
-      return checkWinDirection({i: 0, j: -1}, {i: 0, j: 1});
-    }
+    const checkHorizontal = () => checkWinDirection({ i: 0, j: -1 }, { i: 0, j: 1 });
 
-    function checkDiagonal1() {
-      return checkWinDirection({i: 1, j: 1}, {i: -1, j: -1});
-    }
+    const checkDiagonal1 = () => checkWinDirection({ i: 1, j: 1 }, { i: -1, j: -1 });
 
-    function checkDiagonal2() {
-      return checkWinDirection({i: 1, j: -1}, {i: -1, j: 1});
-    }
+    const checkDiagonal2 = () => checkWinDirection({ i: 1, j: -1 }, { i: -1, j: 1 });
 
     return checkVertical() || checkHorizontal() || checkDiagonal1() || checkDiagonal2();
   }
