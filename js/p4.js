@@ -30,12 +30,12 @@ class P4 {
     const board = $(this.selector);
 
     const lastCase = col => {
-      const cells = $(`.col[data-col='${col}']`);
+      const cells = document.querySelectorAll(`.col[data-col="${col}"]`);
       for (let i = cells.length - 1; i >= 0; i--) {
-        const cell = $(cells[i]);
-        if (cell.hasClass('empty')) {
-          return cell;
-        }
+          const cell = cells[i];
+          if (cell.classList.contains('empty')) {
+              return cell;
+          }
       }
       return null;
     };
@@ -43,8 +43,11 @@ class P4 {
     board.on('mouseenter', '.col.empty', (event) => {
       const col = event.currentTarget.dataset.col;
       const lastEmptyCell = lastCase(col);
+
+      console.log(lastEmptyCell);
+
       if (lastEmptyCell != null) {
-        lastEmptyCell.addClass(`p${this.player}`);
+        lastEmptyCell.classList.add(`p${this.player}`);
       }
     });
 
@@ -58,9 +61,11 @@ class P4 {
     board.on('click', '.col.empty', (event) => {
       const col = event.currentTarget.dataset.col;
       const lastEmptyCell = lastCase(col);
-      lastEmptyCell.addClass(`${this.player}`).removeClass(`empty p${this.player}`).data('player', `${this.player}`);
+      lastEmptyCell.classList.add(`${this.player}`);
+      lastEmptyCell.classList.remove('empty', `p${this.player}`);
+      lastEmptyCell.dataset.player = this.player;
 
-      const winner = this.checkWin(lastEmptyCell.data('row'), lastEmptyCell.data('col'));
+      const winner = this.checkWin(parseInt(lastEmptyCell.dataset.row), parseInt(lastEmptyCell.dataset.col));
 
       this.player = (this.player === 'red') ? 'yellow' : 'red';
 
@@ -72,14 +77,14 @@ class P4 {
   }
 
   checkWin(row, col) {
-    const getCell = (i, j) => $(`.col[data-row='${i}'][data-col='${j}']`);
+    const getCell = (i, j) => document.querySelector(`.col[data-row='${i}'][data-col='${j}']`);
 
     const checkDirection = direction => {
       let total = 0;
       let i = row + direction.i;
       let j = col + direction.j;
       let next = getCell(i, j);
-      while (i >= 0 && i < this.row && j >= 0 && j < this.col && next.data('player') === this.player) {
+      while (i >= 0 && i < this.row && j >= 0 && j < this.col && next.dataset.player === this.player) {
         total++;
         i += direction.i;
         j += direction.j;
