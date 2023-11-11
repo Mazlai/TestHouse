@@ -11,15 +11,28 @@ body {
   height: 100vh;
 }
 
+/* Indication de tour de jeu */
+
+#player-turn {
+  display: block;
+  color: white;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  width:468px;
+  padding: 10px 0 10px 0;
+  background-color: blue; 
+  border-radius: 10px 10px 0 0; 
+}
+
 /* Grille de jeu */
 
 #game {
   display: inline-block;
   text-align: center;
   background-color: blue;
-  padding: 10px; /* Ajout de padding pour le relief */
-  border-radius: 10px; /* Ajout de bord arrondi pour le relief */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Ajout d'une ombre pour le relief */
+  padding: 10px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
   position: relative;
 }
 
@@ -28,9 +41,9 @@ body {
   content: '';
   position: absolute;
   bottom: -10px;
-  width: 20px; /* Largeur des pieds */
-  height: 20px; /* Hauteur des pieds */
-  background-color: blue; /* Couleur des pieds */
+  width: 20px; 
+  height: 20px;
+  background-color: blue;
 }
 
 #game::before {
@@ -81,5 +94,5 @@ body {
 /* Bouton pour recommencer*/
 
 #restart {
-  margin-top: 20px; /* Espacement entre le jeu et le bouton de redémarrage */
+  margin-top: 20px; 
 }

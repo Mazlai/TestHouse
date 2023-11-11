@@ -8,6 +8,7 @@ class P4 {
     this.createGrid();
     this.listenForEvents();
     this.checkWin();
+    this.updatePlayerTurn();
   }
 
   createGrid() {
@@ -24,6 +25,11 @@ class P4 {
       }
       board.appendChild(newRow);
     }
+  }
+
+  updatePlayerTurn() {
+    const playerTurn = document.getElementById('player-turn');
+    playerTurn.textContent = `C'est au tour du joueur ${this.player}`;
   }
 
   listenForEvents() {
@@ -74,9 +80,11 @@ class P4 {
         const winner = this.checkWin(parseInt(lastEmptyCell.dataset.row), parseInt(lastEmptyCell.dataset.col));
 
         this.player = (this.player === 'red') ? 'yellow' : 'red';
+        this.updatePlayerTurn();
 
         if (winner) {
           alert(`Player ${winner} has won!`);
+          document.getElementById('player-turn').style.visibility = 'hidden';
           document.getElementById('restart').style.visibility = 'visible';
         }
       }
