@@ -36,13 +36,13 @@ document.addEventListener('DOMContentLoaded', function() {
     themeOptions.className = `hidden ${theme}`;
 
     // Change le thème des boutons
-    playButton.className = `${theme}`;
-    rulesButton.className = `${theme}`;
-    themeBtn.className = `${theme}`;
-    defaultBtn.className = `${theme}`;
-    firstThemeBtn.className = `${theme}`;
-    secondThemeBtn.className = `${theme}`;
-    returnBtn.className = `${theme}`;
+    playButton.className = theme;
+    rulesButton.className = theme;
+    themeBtn.className = theme;
+    defaultBtn.className = theme;
+    firstThemeBtn.className = theme;
+    secondThemeBtn.className = theme;
+    returnBtn.className = theme;
   }
 
   // Événements pour les options de thème
