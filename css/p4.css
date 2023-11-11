@@ -19,7 +19,7 @@ body {
 
 /* Organisation de la page d'accueil et de thèmes et propriétés ne changeant jamais*/
 
-.home, #theme-options {
+.home, .theme-options {
   margin: 20px;
   padding: 20px;
   border-radius: 10px;
@@ -27,14 +27,14 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.home h1, #theme-options h1 {
+.home h1, .theme-options h1 {
   color: white;
   font-family: 'Kalam', cursive;
   font-size: 36px;
   margin-bottom: 20px;
 }
 
-.home button, #theme-options button{
+.home button, .theme-options button{
   background-color: #fff; /* Blanc */
   color: #4CAF50;
   font-family: 'Kalam', cursive;
@@ -47,15 +47,9 @@ body {
   transition: background-color 0.3s ease-in-out;
 }
 
-.home button:hover, #theme-options button:hover {
+.home button:hover, .theme-options button:hover {
   background-color: #4CAF50;
   color: white;
-}
-
-/* Thèmes */
-
-.hidden {
-  display: none;
 }
 
 /* Thème par défaut */
@@ -63,34 +57,34 @@ body.default {
   background-color: #ffffaf;
 }
 
-.home.default, #theme-options.default {
+.home.default, .theme-options.default {
   background-color: #4CAF50;
 }
 
 /* Thème 1 */
-body.theme1, .home.theme1, #theme-options.theme1 {
+body.theme1, .home.theme1, .theme-options.theme1 {
   background-color: #3498db;
 }
 
-.home button.theme1, #theme-options button.theme1 {
+.home button.theme1, .theme-options button.theme1 {
   color: #3498db;
 }
 
-.home button.theme1:hover, #theme-options button.theme1:hover {
+.home button.theme1:hover, .theme-options button.theme1:hover {
   background-color: #3498db;
   color:white;
 }
 
 /* Thème 2 */
-body.theme2, .home.theme2, #theme-options.theme2 {
+body.theme2, .home.theme2, .theme-options.theme2 {
   background-color: #e74c3c;
 }
 
-.home button.theme2, #theme-options button.theme2 {
+.home button.theme2, .theme-options button.theme2 {
   color: #e74c3c;
 }
 
-.home button.theme2:hover, #theme-options button.theme2:hover {
+.home button.theme2:hover, .theme-options button.theme2:hover {
   background-color: #e74c3c;
   color:white;
 }
@@ -173,8 +167,8 @@ body.theme2, .home.theme2, #theme-options.theme2 {
   background-color: darkgoldenrod;
 }
 
-/* Bouton pour recommencer*/
-#restart {
+/* Bouton pour recommencer et revenir à l'accueil*/
+#restart, #return-to-home {
   margin-top: 20px; 
   background-color: blue;
   color: white;
@@ -188,7 +182,7 @@ body.theme2, .home.theme2, #theme-options.theme2 {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-#restart:hover {
+#restart:hover, #return-to-home:hover {
   background-color: darkblue;
   transition:0.2s ease-in-out;
 }

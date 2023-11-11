@@ -2,9 +2,10 @@ document.addEventListener('DOMContentLoaded', function() {
   // Variables div
   const homePage = document.querySelector('.home');
   const gamePage = document.querySelector('.all-items');
-  const themeOptions = document.getElementById('theme-options');
+  const themeOptions = document.querySelector('.theme-options');
   const gameElement = document.getElementById('game');
   const playerTurn = document.getElementById('player-turn');
+  const afterWin = document.querySelector('.after-win');
 
   // Variables boutons
   const playButton = document.getElementById('play');
@@ -15,34 +16,43 @@ document.addEventListener('DOMContentLoaded', function() {
   const firstThemeBtn = document.getElementById('theme1');
   const secondThemeBtn = document.getElementById('theme2');
   const returnBtn = document.getElementById('return-btn');
+
   const restartButton = document.getElementById('restart');
+  const returnToHomeBtn = document.getElementById('return-to-home');
 
   // Autres variables (localStorage et P4)
   let currentTheme = localStorage.getItem('currentTheme');
   const p4 = new P4('#game');
 
-  // Cache la grille au début
+  // Cache tout sauf la page d'accueil
   gamePage.style.display = 'none';
+  themeOptions.style.display = 'none';
+  afterWin.style.display = 'none';
 
   // Événement pour le bouton Jouer
   playButton.addEventListener('click', function() {
     // Cache la page d'accueil
     homePage.style.display = 'none';
 
-    // Affiche la grille et le changement de joueur
+    // Affiche la grille et le changement de joueur et les pieds de la grille
     gamePage.style.display = 'block';
     playerTurn.style.visibility = 'visible';
-
-    // Affiche les pieds de la grille
     gameElement.classList.add('has-feet');
 
     // Événements lorsque le bouton de redémarrage est cliqué
     restartButton.addEventListener('click', function() {
       gameElement.innerHTML = '';
       p4.createGrid();
-      restartButton.style.visibility = 'hidden';
+      afterWin.style.display = 'none';
       playerTurn.style.visibility = 'visible';
     });
+  });
+
+  // Événement pour le bouton Retour depius la grille
+  returnToHomeBtn.addEventListener('click', function() {
+    gamePage.style.display = 'none';
+    afterWin.style.display = 'none';
+    homePage.style.display = 'block';
   });
 
   // Événement pour le bouton Thème
@@ -56,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Change le thème des div + body
     document.body.className = theme;
     homePage.className = `home ${theme}`;
-    themeOptions.className = `hidden ${theme}`;
+    themeOptions.className = `theme-options ${theme}`;
 
     // Change le thème des boutons
     playButton.className = theme;
@@ -87,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Événement pour le bouton Retour
+  // Événement pour le bouton Retour depuis thèmes
   returnBtn.addEventListener('click', function() {
     homePage.style.display = 'block';
     themeOptions.style.display = 'none';

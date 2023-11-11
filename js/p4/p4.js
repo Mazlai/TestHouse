@@ -96,7 +96,7 @@ class P4 {
         if (winner) {
           alert(`Player ${winner} has won!`);
           document.getElementById('player-turn').style.visibility = 'hidden';
-          document.getElementById('restart').style.visibility = 'visible';
+          document.querySelector('.after-win').style.display = 'block';
         }
       }
     });
