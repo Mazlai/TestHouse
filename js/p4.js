@@ -11,6 +11,7 @@ class P4 {
     this.updatePlayerTurn();
   }
 
+  // Crée la grille Puissance 4
   createGrid() {
     const board = document.querySelector(this.selector);
     for (let row = 0; row < this.row; row++) {
@@ -27,11 +28,13 @@ class P4 {
     }
   }
 
+  // Met à jour le joueur actuel
   updatePlayerTurn() {
     const playerTurn = document.getElementById('player-turn');
     playerTurn.textContent = `C'est au tour du joueur ${this.player}`;
   }
 
+  // Écoute les événements
   listenForEvents() {
     const board = document.querySelector(this.selector);
 
@@ -46,6 +49,7 @@ class P4 {
       return null;
     };
 
+    // Affiche le jeton du joueur actuel lorsqu'il passe la souris sur la colonne
     board.addEventListener('mouseenter', (event) => {
       const target = event.target;
       const colElement = target.closest('.col.empty');
@@ -60,6 +64,7 @@ class P4 {
       }
     }, true);
 
+    // Supprime le jeton du joueur actuel lorsqu'il quitte la colonne
     board.addEventListener('mouseleave', () => {
       const cells = document.querySelectorAll('.col');
       cells.forEach(cell => {
@@ -67,8 +72,11 @@ class P4 {
       });
     }, true);
 
+    // Place le jeton du joueur actuel lorsqu'il clique sur la colonne
     board.addEventListener('click', (event) => {
       const target = event.target;
+
+      // Vérifie si la case est vide
       if (target.classList.contains('col') && target.classList.contains('empty')) {
         const col = target.dataset.col;
         const lastEmptyCell = lastCase(col);
@@ -77,11 +85,14 @@ class P4 {
         lastEmptyCell.classList.remove('empty', `p${this.player}`);
         lastEmptyCell.dataset.player = this.player;
 
+        // Vérifie si un joueur a gagné
         const winner = this.checkWin(parseInt(lastEmptyCell.dataset.row), parseInt(lastEmptyCell.dataset.col));
 
+        // Change de joueur
         this.player = (this.player === 'red') ? 'yellow' : 'red';
         this.updatePlayerTurn();
 
+        // Affiche le joueur gagnant
         if (winner) {
           alert(`Player ${winner} has won!`);
           document.getElementById('player-turn').style.visibility = 'hidden';
@@ -91,9 +102,11 @@ class P4 {
     });
   }
 
+  // Vérifie si un joueur a gagné
   checkWin(row, col) {
     const getCell = (i, j) => document.querySelector(`.col[data-row="${i}"][data-col="${j}"]`);
 
+    // Vérifie si la case existe
     const checkDirection = direction => {
       let total = 0;
       let i = row + direction.i;
@@ -108,6 +121,7 @@ class P4 {
       return total;
     };
 
+    // Vérifie si le joueur a gagné dans une direction
     const checkWinDirection = (directionA, directionB) => {
       const totalA = checkDirection(directionA);
       const totalB = checkDirection(directionB);
@@ -115,12 +129,10 @@ class P4 {
       return (total >= 4) ? this.player : null;
     };
 
+    // Vérifie si le joueur a gagné verticalement, horizontalement ou en diagonale
     const checkVertical = () => checkWinDirection({ i: -1, j: 0 }, { i: 1, j: 0 });
-
     const checkHorizontal = () => checkWinDirection({ i: 0, j: -1 }, { i: 0, j: 1 });
-
     const checkPremiereDiagonale = () => checkWinDirection({ i: 1, j: 1 }, { i: -1, j: -1 });
-
     const checkDeuxiemeDiagonale = () => checkWinDirection({ i: 1, j: -1 }, { i: -1, j: 1 });
 
     return checkVertical() || checkHorizontal() || checkPremiereDiagonale() || checkDeuxiemeDiagonale();

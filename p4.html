@@ -9,11 +9,24 @@
     <script src="./js/p4.js"></script>
     <script src="./js/p4load.js"></script>
 </head>
-<body>
+<body class="default">
+    <div class="home default">
+        <h1>Puissance 4</h1>
+        <button class="default" id="play">Jouer</button>
+        <button class="default" id="rules">Règles</button>
+        <button class="default" id="theme-btn">Thème</button>
+    </div>
+
+    <div id="theme-options" class="hidden default">
+        <h1>Thèmes</h1>
+        <button class="theme-option default" id="default">Thème par défaut</button>
+        <button class="theme-option default" id="theme1">Thème 1</button>
+        <button class="theme-option default" id="theme2">Thème 2</button>
+        <button class="default" id="return-btn">Retour</button>
+    </div>
+
     <div class="all-items">
-        <div id="player-turn">
-            C'est au tour du joueur rouge
-        </div>
+        <div id="player-turn" style="visibility:hidden;"></div>
         <div id="game"></div>
     </div>
     <button id="restart" style="visibility:hidden;">Relancer</button>

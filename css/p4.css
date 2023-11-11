@@ -15,8 +15,89 @@ body {
   height: 100vh;
 }
 
-/* Indication de tour de jeu */
+/************************| Page d'accueil et thèmes |************************/
 
+/* Organisation de la page d'accueil et de thèmes et propriétés ne changeant jamais*/
+
+.home, #theme-options {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.home h1, #theme-options h1 {
+  color: white;
+  font-family: 'Kalam', cursive;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.home button, #theme-options button{
+  background-color: #fff; /* Blanc */
+  color: #4CAF50;
+  font-family: 'Kalam', cursive;
+  font-size: 18px;
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.home button:hover, #theme-options button:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Thèmes */
+
+.hidden {
+  display: none;
+}
+
+/* Thème par défaut */
+body.default {
+  background-color: #ffffaf;
+}
+
+.home.default, #theme-options.default {
+  background-color: #4CAF50;
+}
+
+/* Thème 1 */
+body.theme1, .home.theme1, #theme-options.theme1 {
+  background-color: #3498db;
+}
+
+.home button.theme1, #theme-options button.theme1 {
+  color: #3498db;
+}
+
+.home button.theme1:hover, #theme-options button.theme1:hover {
+  background-color: #3498db;
+  color:white;
+}
+
+/* Thème 2 */
+body.theme2, .home.theme2, #theme-options.theme2 {
+  background-color: #e74c3c;
+}
+
+.home button.theme2, #theme-options button.theme2 {
+  color: #e74c3c;
+}
+
+.home button.theme2:hover, #theme-options button.theme2:hover {
+  background-color: #e74c3c;
+  color:white;
+}
+
+/************************| Puissance 4 |************************/
+
+/* Indication de tour de jeu */
 #player-turn {
   display: block;
   color: white;
@@ -30,7 +111,6 @@ body {
 }
 
 /* Grille de jeu */
-
 #game {
   display: inline-block;
   text-align: center;
@@ -41,7 +121,7 @@ body {
 }
 
 /* Pieds arrondis */
-#game::before, #game::after {
+#game.has-feet::before, #game.has-feet::after {
   content: '';
   position: absolute;
   bottom: -10px;
@@ -50,18 +130,17 @@ body {
   background-color: blue;
 }
 
-#game::before {
+#game.has-feet::before {
   left: 0;
   border-radius: 0 50% 50% 50%;   
 }
 
-#game::after {
+#game.has-feet::after {
   right: 0;
   border-radius: 50% 0 50% 50%;  
 }
 
 /* Cellules de la grille */
-
 .col {
   width:50px;
   height:50px;
@@ -78,7 +157,6 @@ body {
 }
 
 /* Remplissage des cellules */
-
 .col.red {
   background-color: red;
 }
@@ -96,7 +174,6 @@ body {
 }
 
 /* Bouton pour recommencer*/
-
 #restart {
   margin-top: 20px; 
   background-color: blue;
@@ -106,7 +183,7 @@ body {
   font-family: 'Kalam', cursive;
   padding: 10px;
   border: none;
-  border-radius: 10px; /* Bord arrondi */
+  border-radius: 10px;
   cursor: pointer;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
