@@ -1,3 +1,5 @@
+/* Démarrage du jeu */
+
 document.addEventListener('DOMContentLoaded', function() {
     const p4 = new P4('#game');
   

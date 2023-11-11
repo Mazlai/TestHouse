@@ -1,26 +1,66 @@
+/* Coeur de la page */
+
 body {
   background-color: #ffffaf;
   text-align: center;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
+
+/* Grille de jeu */
 
 #game {
   display: inline-block;
   text-align: center;
   background-color: blue;
+  padding: 10px; /* Ajout de padding pour le relief */
+  border-radius: 10px; /* Ajout de bord arrondi pour le relief */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Ajout d'une ombre pour le relief */
+  position: relative;
 }
+
+/* Pieds arrondis */
+#game::before, #game::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  width: 20px; /* Largeur des pieds */
+  height: 20px; /* Hauteur des pieds */
+  background-color: blue; /* Couleur des pieds */
+}
+
+#game::before {
+  left: 0;
+  border-radius: 0 50% 50% 50%;   
+}
+
+#game::after {
+  right: 0;
+  border-radius: 50% 0 50% 50%;  
+}
+
+/* Cellules de la grille */
 
 .col {
   width:50px;
   height:50px;
   border-radius: 50%;
   background-color: #ffffaf;
+  border:2px solid black;
   display: inline-block;
   margin: 5px;
+  position: relative;
 }
 
 .col.empty {
   cursor:pointer;
 }
+
+/* Remplissage des cellules */
 
 .col.red {
   background-color: red;
@@ -36,4 +76,10 @@ body {
 
 .col.pyellow {
   background-color: darkgoldenrod;
+}
+
+/* Bouton pour recommencer*/
+
+#restart {
+  margin-top: 20px; /* Espacement entre le jeu et le bouton de redémarrage */
 }
