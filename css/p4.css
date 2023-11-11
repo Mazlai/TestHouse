@@ -1,3 +1,7 @@
+/* Imports */
+
+@import url('https://fonts.googleapis.com/css2?family=Kalam&family=Ubuntu&display=swap');
+
 /* Coeur de la page */
 
 body {
@@ -16,7 +20,7 @@ body {
 #player-turn {
   display: block;
   color: white;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Kalam', cursive;
   font-size: 18px;
   font-weight: bold;
   width:468px;
@@ -95,4 +99,19 @@ body {
 
 #restart {
   margin-top: 20px; 
+  background-color: blue;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Kalam', cursive;
+  padding: 10px;
+  border: none;
+  border-radius: 10px; /* Bord arrondi */
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#restart:hover {
+  background-color: darkblue;
+  transition:0.2s ease-in-out;
 }
