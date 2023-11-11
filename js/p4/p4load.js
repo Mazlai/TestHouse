@@ -50,6 +50,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Événement pour le bouton Retour depius la grille
   returnToHomeBtn.addEventListener('click', function() {
+    gameElement.innerHTML = '';
+    p4.createGrid();
     gamePage.style.display = 'none';
     afterWin.style.display = 'none';
     homePage.style.display = 'block';
