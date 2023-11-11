@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Variables div
   const homePage = document.querySelector('.home');
   const gamePage = document.querySelector('.all-items');
+  const rulesPage = document.querySelector('.rules');
   const themeOptions = document.querySelector('.theme-options');
   const gameElement = document.getElementById('game');
   const playerTurn = document.getElementById('player-turn');
@@ -15,10 +16,11 @@ document.addEventListener('DOMContentLoaded', function() {
   const defaultBtn = document.getElementById('default');
   const firstThemeBtn = document.getElementById('theme1');
   const secondThemeBtn = document.getElementById('theme2');
-  const returnBtn = document.getElementById('return-btn');
+  const returnToHomeFromThemesBtn = document.getElementById('return-to-home-from-themes');
+  const returnToHomeFromRulesBtn = document.getElementById('return-to-home-from-rules');
 
   const restartButton = document.getElementById('restart');
-  const returnToHomeBtn = document.getElementById('return-to-home');
+  const returnToHomeFromGameBtn = document.getElementById('return-to-home-from-game');
 
   // Autres variables (localStorage et P4)
   let currentTheme = localStorage.getItem('currentTheme');
@@ -26,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Cache tout sauf la page d'accueil
   gamePage.style.display = 'none';
+  rulesPage.style.display = 'none';
   themeOptions.style.display = 'none';
   afterWin.style.display = 'none';
 
@@ -49,12 +52,24 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Événement pour le bouton Retour depius la grille
-  returnToHomeBtn.addEventListener('click', function() {
+  returnToHomeFromGameBtn.addEventListener('click', function() {
     gameElement.innerHTML = '';
     p4.createGrid();
     gamePage.style.display = 'none';
     afterWin.style.display = 'none';
     homePage.style.display = 'block';
+  });
+
+  // Événement pour le bouton Règles
+  rulesButton.addEventListener('click', function() {
+    homePage.style.display = 'none';
+    rulesPage.style.display = 'block';
+  });
+
+  // Événement pour le bouton Retour depuis règles
+  returnToHomeFromRulesBtn.addEventListener('click', function() {
+    homePage.style.display = 'block';
+    rulesPage.style.display = 'none';
   });
 
   // Événement pour le bouton Thème
@@ -68,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Change le thème des div + body
     document.body.className = theme;
     homePage.className = `home ${theme}`;
+    rulesPage.className = `rules ${theme}`;
     themeOptions.className = `theme-options ${theme}`;
 
     // Change le thème des boutons
@@ -77,7 +93,8 @@ document.addEventListener('DOMContentLoaded', function() {
     defaultBtn.className = theme;
     firstThemeBtn.className = theme;
     secondThemeBtn.className = theme;
-    returnBtn.className = theme;
+    returnToHomeFromThemesBtn.className = theme;
+    returnToHomeFromRulesBtn.className = theme;
 
     // Enregistre le thème actuel dans le localStorage
     localStorage.setItem('currentTheme', theme);
@@ -100,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Événement pour le bouton Retour depuis thèmes
-  returnBtn.addEventListener('click', function() {
+  returnToHomeFromThemesBtn.addEventListener('click', function() {
     homePage.style.display = 'block';
     themeOptions.style.display = 'none';
   });
