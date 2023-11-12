@@ -125,6 +125,10 @@ body.theme2, .home.theme2, .token-selection.theme2, .rules.theme2, .theme-option
   transition: transform 0.3s ease-in-out; /* Ajoutez une transition pour un effet fluide */
 }
 
+.selected-player1, .selected-player2 {
+  visibility: hidden;
+}
+
 /************************| Puissance 4 |************************/
 
 /* Indication de tour de jeu */
@@ -196,11 +200,13 @@ body.theme2, .home.theme2, .token-selection.theme2, .rules.theme2, .theme-option
 }
 
 .col.pun {
-  background-color: darken(var(--player1-color), 20%);
+  background-color: var(--player1-color);
+  opacity: 0.7;
 }
 
 .col.pdeux {
-  background-color: darken(var(--player2-color), 20%);
+  background-color: var(--player2-color);
+  opacity: 0.7;
 }
 
 /* Bouton pour recommencer et revenir à l'accueil*/
