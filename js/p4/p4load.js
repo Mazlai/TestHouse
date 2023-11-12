@@ -153,6 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
     defaultBtn.className = theme;
     firstThemeBtn.className = theme;
     secondThemeBtn.className = theme;
+    startGameButton.className = theme;
     returnToHomeFromTokenSelectionBtn.className = theme;
     returnToHomeFromRulesBtn.className = theme;
     returnToHomeFromThemesBtn.className = theme;
