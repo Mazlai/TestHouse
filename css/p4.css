@@ -131,8 +131,8 @@ body.theme2, .home.theme2, .token-selection.theme2, .rules.theme2, .theme-option
 
 /************************| Puissance 4 |************************/
 
-/* Indication de tour de jeu */
-#player-turn {
+/* Indication de tour de jeu et message de victoire */
+#player-turn, #victory-message {
   display: block;
   color: white;
   font-family: 'Kalam', cursive;
@@ -141,8 +141,16 @@ body.theme2, .home.theme2, .token-selection.theme2, .rules.theme2, .theme-option
   width:468px;
   padding: 10px 0 10px 0;
   background-color: blue; 
+}
+
+#player-turn {
   border-radius: 10px 10px 0 0; 
 }
+
+#victory-message {
+  border-radius: 10px;
+}
+
 
 /* Grille de jeu */
 #game {

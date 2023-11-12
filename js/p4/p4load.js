@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const themeOptions = document.querySelector('.theme-options');
   const gameElement = document.getElementById('game');
   const playerTurn = document.getElementById('player-turn');
+  const victoryMessage = document.getElementById('victory-message');
   const afterWin = document.querySelector('.after-win');
 
   // Variables boutons et textes
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
   rulesPage.style.display = 'none';
   themeOptions.style.display = 'none';
   afterWin.style.display = 'none';
+  victoryMessage.style.display = 'none';
 
   playButton.addEventListener('click', function() {
     // Cache la page d'accueil et affiche la sélection des jetons
@@ -101,6 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
       p4.createGrid();
       afterWin.style.display = 'none';
       playerTurn.style.visibility = 'visible';
+      victoryMessage.style.display = 'none';
     });
 
     // Événement pour le bouton Retour depius la grille
@@ -109,6 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
       gamePage.style.display = 'none';
       afterWin.style.display = 'none';
       homePage.style.display = 'block';
+      victoryMessage.style.display = 'none';
     });
   });
 

@@ -105,7 +105,9 @@ class P4 {
 
           if (winner) {
             confetti();
-            alert(`Le joueur ${winner} a gagné !`);
+            const victoryMessage = document.getElementById('victory-message');
+            victoryMessage.textContent = `Le joueur ${winner} a gagné !`;
+            victoryMessage.style.display = 'block';
             document.getElementById('player-turn').style.visibility = 'hidden';
             document.querySelector('.after-win').style.display = 'block';
           }
