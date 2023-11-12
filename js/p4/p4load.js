@@ -52,9 +52,8 @@ document.addEventListener('DOMContentLoaded', function() {
       // Supprimez tous les jetons existants
       tokenGrid.innerHTML = '';
 
-      // Charger les couleurs à partir du fichier JSON
-      const response = await fetch('./js/p4/p4.json');
-      const { colors } = await response.json();
+      // Charger les couleurs de manière asynchrone
+      const {colors} = await import('./colors.js');
 
       for (let i = 0; i < 40; i++) { // Créez 40 jetons pour une grille 10x4
         const token = document.createElement('div');
@@ -63,6 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Appliquez la couleur du fichier JSON au fond du jeton
         const color = colors[i];
+
         token.style.backgroundColor = color;
 
         // Ajoutez un écouteur d'événements pour le clic

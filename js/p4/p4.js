@@ -51,7 +51,7 @@ class P4 {
       const cells = document.querySelectorAll(`.col[data-col="${col}"]`);
       for (let i = cells.length - 1; i >= 0; i--) {
           const cell = cells[i];
-          if (cell.classList.contains('empty')  && cell.dataset.player !== this.player) {
+          if (cell.classList.contains('empty')) {
               return cell;
           }
       }
@@ -93,24 +93,22 @@ class P4 {
         const lastEmptyCell = lastCase(col);
         console.log(lastEmptyCell);
 
-        if (lastEmptyCell) {
-          lastEmptyCell.classList.add(`${this.player}`);
-          lastEmptyCell.classList.remove('empty', `p${this.player}`);
-          lastEmptyCell.dataset.player = this.player;
-    
-          // Vérifie si un joueur a gagné
-          const winner = this.checkWin(parseInt(lastEmptyCell.dataset.row), parseInt(lastEmptyCell.dataset.col));
-    
-          // Change de joueur
-          this.player = (this.player === 'un') ? 'deux' : 'un';
-          this.updatePlayerTurn();
-    
-          // Affiche le joueur gagnant
-          if (winner) {
-            alert(`Player ${winner} has won!`);
-            document.getElementById('player-turn').style.visibility = 'hidden';
-            document.querySelector('.after-win').style.display = 'block';
-          }
+        lastEmptyCell.classList.add(`${this.player}`);
+        lastEmptyCell.classList.remove('empty', `p${this.player}`);
+        lastEmptyCell.dataset.player = this.player;
+
+        // Vérifie si un joueur a gagné
+        const winner = this.checkWin(parseInt(lastEmptyCell.dataset.row), parseInt(lastEmptyCell.dataset.col));
+
+        // Change de joueur
+        this.player = (this.player === 'un') ? 'deux' : 'un';
+        this.updatePlayerTurn();
+
+        // Affiche le joueur gagnant
+        if (winner) {
+          alert(`Player ${winner} has won!`);
+          document.getElementById('player-turn').style.visibility = 'hidden';
+          document.querySelector('.after-win').style.display = 'block';
         }
       }
     });
