@@ -1,9 +1,11 @@
 class P4 {
-  constructor(selector) {
+  constructor(selector, player1Color, player2Color) {
     this.col = 7;
     this.row = 6;
     this.selector = selector;
-    this.player = 'red';
+    this.player1Color = player1Color;
+    this.player2Color = player2Color;
+    this.player = 'un';
 
     this.createGrid();
     this.listenForEvents();
@@ -14,6 +16,8 @@ class P4 {
   // Crée la grille Puissance 4
   createGrid() {
     const board = document.querySelector(this.selector);
+    board.innerHTML = '';
+    
     for (let row = 0; row < this.row; row++) {
       const newRow = document.createElement('div');
       newRow.classList.add('row');
@@ -22,6 +26,11 @@ class P4 {
         newCol.classList.add('col', 'empty');
         newCol.dataset.col = col;
         newCol.dataset.row = row;
+
+        // Définir les variables CSS personnalisées
+        newCol.style.setProperty('--player1-color', this.player1Color);
+        newCol.style.setProperty('--player2-color', this.player2Color);
+
         newRow.appendChild(newCol);
       }
       board.appendChild(newRow);
@@ -42,7 +51,7 @@ class P4 {
       const cells = document.querySelectorAll(`.col[data-col="${col}"]`);
       for (let i = cells.length - 1; i >= 0; i--) {
           const cell = cells[i];
-          if (cell.classList.contains('empty')) {
+          if (cell.classList.contains('empty')  && cell.dataset.player !== this.player) {
               return cell;
           }
       }
@@ -79,24 +88,29 @@ class P4 {
       // Vérifie si la case est vide
       if (target.classList.contains('col') && target.classList.contains('empty')) {
         const col = target.dataset.col;
+        console.log(col);
+
         const lastEmptyCell = lastCase(col);
+        console.log(lastEmptyCell);
 
-        lastEmptyCell.classList.add(`${this.player}`);
-        lastEmptyCell.classList.remove('empty', `p${this.player}`);
-        lastEmptyCell.dataset.player = this.player;
-
-        // Vérifie si un joueur a gagné
-        const winner = this.checkWin(parseInt(lastEmptyCell.dataset.row), parseInt(lastEmptyCell.dataset.col));
-
-        // Change de joueur
-        this.player = (this.player === 'red') ? 'yellow' : 'red';
-        this.updatePlayerTurn();
-
-        // Affiche le joueur gagnant
-        if (winner) {
-          alert(`Player ${winner} has won!`);
-          document.getElementById('player-turn').style.visibility = 'hidden';
-          document.querySelector('.after-win').style.display = 'block';
+        if (lastEmptyCell) {
+          lastEmptyCell.classList.add(`${this.player}`);
+          lastEmptyCell.classList.remove('empty', `p${this.player}`);
+          lastEmptyCell.dataset.player = this.player;
+    
+          // Vérifie si un joueur a gagné
+          const winner = this.checkWin(parseInt(lastEmptyCell.dataset.row), parseInt(lastEmptyCell.dataset.col));
+    
+          // Change de joueur
+          this.player = (this.player === 'un') ? 'deux' : 'un';
+          this.updatePlayerTurn();
+    
+          // Affiche le joueur gagnant
+          if (winner) {
+            alert(`Player ${winner} has won!`);
+            document.getElementById('player-turn').style.visibility = 'hidden';
+            document.querySelector('.after-win').style.display = 'block';
+          }
         }
       }
     });

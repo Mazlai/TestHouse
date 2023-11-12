@@ -3,7 +3,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Kalam&family=Ubuntu&display=swap');
 
 /* Coeur de la page */
-
 body {
   background-color: #ffffaf;
   text-align: center;
@@ -15,11 +14,10 @@ body {
   height: 100vh;
 }
 
-/************************| Page d'accueil, règles et thèmes |************************/
+/************************| Page d'accueil, sélection des jetons, règles et thèmes |************************/
 
-/* Organisation de la page d'accueil, des règles et des thèmes*/
-
-.home, .rules, .theme-options {
+/* Page d'accueil, de la sélection des jetons, des règles et des thèmes*/
+.home, .token-selection, .rules, .theme-options {
   margin: 20px;
   padding: 20px;
   border-radius: 10px;
@@ -28,14 +26,14 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.home h1, .rules h1, .theme-options h1 {
+.home h1, .token-selection h1, .rules h1, .theme-options h1 {
   color: white;
   font-family: 'Kalam', cursive;
   font-size: 36px;
   margin-bottom: 20px;
 }
 
-.home button, .rules button, .theme-options button{
+.home button, .token-selection button, .rules button, .theme-options button{
   background-color: #fff; /* Blanc */
   color: #4CAF50;
   font-family: 'Kalam', cursive;
@@ -48,54 +46,83 @@ body {
   transition: background-color 0.3s ease-in-out;
 }
 
-.home button:hover, .rules button:hover, .theme-options button:hover {
+.home button:hover, .token-selection button:hover, .rules button:hover, .theme-options button:hover {
   background-color: #4CAF50;
   color: white;
 }
 
-.rules p {
+.rules p, .token-selection p {
   color: white;
   font-family: 'Ubuntu', sans-serif;
   font-size: 18px;
   margin-bottom: 20px;
+}
+
+.rules p {
   text-align: justify;
 }
 
-/* Thème par défaut */
+.token-selection p {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Thèmes */
 body.default {
   background-color: #ffffaf;
 }
 
-.home.default, .rules.default .theme-options.default {
+.home.default, .token-selection.default, .rules.default .theme-options.default {
   background-color: #4CAF50;
 }
 
-/* Thème 1 */
-body.theme1, .home.theme1, .rules.theme1, .theme-options.theme1 {
+body.theme1, .home.theme1, .token-selection.theme1, .rules.theme1, .theme-options.theme1 {
   background-color: #3498db;
 }
 
-.home button.theme1, .rules button.theme1, .theme-options button.theme1 {
+.home button.theme1, .token-selection button.theme1, .rules button.theme1, .theme-options button.theme1 {
   color: #3498db;
 }
 
-.home button.theme1:hover, .rules button.theme1:hover, .theme-options button.theme1:hover {
+.home button.theme1:hover, .token-selection button.theme1:hover, .rules button.theme1:hover, .theme-options button.theme1:hover {
   background-color: #3498db;
   color:white;
 }
 
-/* Thème 2 */
-body.theme2, .home.theme2, .rules.theme2, .theme-options.theme2 {
+body.theme2, .home.theme2, .token-selection.theme2, .rules.theme2, .theme-options.theme2 {
   background-color: #e74c3c;
 }
 
-.home button.theme2, .rules button.theme2, .theme-options button.theme2 {
+.home button.theme2, .token-selection button.theme2, .rules button.theme2, .theme-options button.theme2 {
   color: #e74c3c;
 }
 
-.home button.theme2:hover, .rules button.theme2:hover, .theme-options button.theme2:hover {
+.home button.theme2:hover, .token-selection button.theme2:hover, .rules button.theme2:hover, .theme-options button.theme2:hover {
   background-color: #e74c3c;
   color:white;
+}
+
+/* Page de sélection des jetons*/
+#token-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 50px); /* 10 colonnes pour les jetons */
+  grid-template-rows: repeat(4, 50px); /* 4 lignes pour les jetons */
+  gap: 10px;
+  margin: 20px 10px 20px 10px;
+}
+
+.token-selector {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid #000; 
+}
+
+/* Ajoutez ces styles pour l'effet de survol */
+.token-selector:hover {
+  transform: scale(1.1); /* Ajustez la mise à l'échelle selon votre préférence */
+  transition: transform 0.3s ease-in-out; /* Ajoutez une transition pour un effet fluide */
 }
 
 /************************| Puissance 4 |************************/
@@ -160,20 +187,20 @@ body.theme2, .home.theme2, .rules.theme2, .theme-options.theme2 {
 }
 
 /* Remplissage des cellules */
-.col.red {
-  background-color: red;
+.col.un {
+  background-color: var(--player1-color);
 }
 
-.col.yellow {
-  background-color: yellow;
+.col.deux {
+  background-color: var(--player2-color);
 }
 
-.col.pred {
-  background-color: darkred;
+.col.pun {
+  background-color: darken(var(--player1-color), 20%);
 }
 
-.col.pyellow {
-  background-color: darkgoldenrod;
+.col.pdeux {
+  background-color: darken(var(--player2-color), 20%);
 }
 
 /* Bouton pour recommencer et revenir à l'accueil*/
