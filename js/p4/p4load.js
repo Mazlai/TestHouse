@@ -101,13 +101,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Événements lorsque le bouton de redémarrage est cliqué
     restartButton.addEventListener('click', function() {
-      p4.createGrid();
+      p4.resetGame();
       afterWin.style.display = 'none';
       playerTurn.style.visibility = 'visible';
     });
 
     // Événement pour le bouton Retour depius la grille
     returnToHomeFromGameBtn.addEventListener('click', function() {
+      p4.resetGame();
       gamePage.style.display = 'none';
       afterWin.style.display = 'none';
       homePage.style.display = 'block';

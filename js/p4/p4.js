@@ -8,7 +8,7 @@ class P4 {
     this.player = 'un';
 
     this.createGrid();
-    this.listenForEvents();
+    this.addEventListeners();
     this.checkWin();
     this.updatePlayerTurn();
   }
@@ -44,7 +44,7 @@ class P4 {
   }
 
   // Écoute les événements
-  listenForEvents() {
+  addEventListeners() {
     const board = document.querySelector(this.selector);
 
     const lastCase = col => {
@@ -59,59 +59,80 @@ class P4 {
     };
 
     // Affiche le jeton du joueur actuel lorsqu'il passe la souris sur la colonne
-    board.addEventListener('mouseenter', (event) => {
+    this.handleMouseEnter = (event) => {
       const target = event.target;
       const colElement = target.closest('.col.empty');
-    
+
       if (colElement) {
         const col = colElement.dataset.col;
         const lastEmptyCell = lastCase(col);
-    
+
         if (lastEmptyCell) {
           lastEmptyCell.classList.add(`p${this.player}`);
         }
       }
-    }, true);
+    };
 
     // Supprime le jeton du joueur actuel lorsqu'il quitte la colonne
-    board.addEventListener('mouseleave', () => {
+    this.handleMouseLeave = () => {
       const cells = document.querySelectorAll('.col');
       cells.forEach(cell => {
         cell.classList.remove(`p${this.player}`);
       });
-    }, true);
+    };
 
     // Place le jeton du joueur actuel lorsqu'il clique sur la colonne
-    board.addEventListener('click', (event) => {
+    this.handleEvent = (event) => {
       const target = event.target;
+      const colElement = target.closest('.col');
 
-      // Vérifie si la case est vide
-      if (target.classList.contains('col') && target.classList.contains('empty')) {
-        const col = target.dataset.col;
-        console.log(col);
-
+      if (colElement && colElement.classList.contains('empty')) {
+        const col = colElement.dataset.col;
         const lastEmptyCell = lastCase(col);
-        console.log(lastEmptyCell);
 
-        lastEmptyCell.classList.add(`${this.player}`);
-        lastEmptyCell.classList.remove('empty', `p${this.player}`);
-        lastEmptyCell.dataset.player = this.player;
+        if (lastEmptyCell) {
+          lastEmptyCell.classList.add(`${this.player}`);
+          lastEmptyCell.classList.remove('empty', `p${this.player}`);
+          lastEmptyCell.dataset.player = this.player;
 
-        // Vérifie si un joueur a gagné
-        const winner = this.checkWin(parseInt(lastEmptyCell.dataset.row), parseInt(lastEmptyCell.dataset.col));
+          const winner = this.checkWin(
+            parseInt(lastEmptyCell.dataset.row),
+            parseInt(lastEmptyCell.dataset.col)
+          );
 
-        // Change de joueur
-        this.player = (this.player === 'un') ? 'deux' : 'un';
-        this.updatePlayerTurn();
+          this.player = (this.player === 'un') ? 'deux' : 'un';
+          this.updatePlayerTurn();
 
-        // Affiche le joueur gagnant
-        if (winner) {
-          alert(`Player ${winner} has won!`);
-          document.getElementById('player-turn').style.visibility = 'hidden';
-          document.querySelector('.after-win').style.display = 'block';
+          if (winner) {
+            alert(`Player ${winner} has won!`);
+            document.getElementById('player-turn').style.visibility = 'hidden';
+            document.querySelector('.after-win').style.display = 'block';
+          }
         }
       }
-    });
+    };
+
+    // Ajout de l'écouteur d'événements
+    board.addEventListener('mouseenter', this.handleMouseEnter, true);
+    board.addEventListener('mouseleave', this.handleMouseLeave, true);
+    board.addEventListener('click', this.handleEvent);
+  }
+
+  // Fonction pour supprimer les écouteurs d'événements
+  removeEventListeners() {
+    const board = document.querySelector(this.selector);
+
+    // Suppression de l'écouteur d'événements
+    board.removeEventListener('click', this.handleEvent);
+    board.removeEventListener('mouseenter', this.handleMouseEnter);
+    board.removeEventListener('mouseleave', this.handleMouseLeave);
+  }
+
+  // Fonction pour réinitialiser la grille et les écouteurs d'événements
+  resetGame() {
+    this.removeEventListeners();
+    this.createGrid();
+    this.addEventListeners();
   }
 
   // Vérifie si un joueur a gagné
