@@ -132,7 +132,7 @@ class P4 {
   resetGame() {
     this.removeEventListeners();
     this.createGrid();
-    this.addEventListeners();
+    //this.addEventListeners();
   }
 
   // Vérifie si un joueur a gagné

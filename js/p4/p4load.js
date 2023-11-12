@@ -52,9 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
       // Supprimez tous les jetons existants
       tokenGrid.innerHTML = '';
 
-      // Charger les couleurs de manière asynchrone
-      const {colors} = await import('./colors.js');
-
       for (let i = 0; i < 40; i++) { // Créez 40 jetons pour une grille 10x4
         const token = document.createElement('div');
         token.className = 'token-selector'; // Ajoutez la classe token-selector
