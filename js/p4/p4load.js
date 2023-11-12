@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
               // Si le joueur 2 n'a pas encore choisi et la couleur est différente de celle du joueur 1, attribuez la couleur au joueur 2
               player2TokenColor = color;
               token.classList.add('selected-player2');
-              playerMessage.textContent = "Les joueurs ont sélectionné leurs jetons. Cliquez sur 'Jouer'.";
+              playerMessage.textContent = "Les joueurs ont sélectionné leurs jetons. Cliquez sur 'Commencer'.";
               startGameButton.style.visibility = 'visible';
           }
           // Si les deux joueurs ont choisi, activez le bouton "Jouer"
