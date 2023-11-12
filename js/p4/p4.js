@@ -104,7 +104,8 @@ class P4 {
           this.updatePlayerTurn();
 
           if (winner) {
-            alert(`Player ${winner} has won!`);
+            confetti();
+            alert(`Le joueur ${winner} a gagné !`);
             document.getElementById('player-turn').style.visibility = 'hidden';
             document.querySelector('.after-win').style.display = 'block';
           }
@@ -132,7 +133,6 @@ class P4 {
   resetGame() {
     this.removeEventListeners();
     this.createGrid();
-    //this.addEventListeners();
   }
 
   // Vérifie si un joueur a gagné

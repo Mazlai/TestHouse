@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Événements lorsque le bouton de redémarrage est cliqué
     restartButton.addEventListener('click', function() {
-      p4.resetGame();
+      p4.createGrid();
       afterWin.style.display = 'none';
       playerTurn.style.visibility = 'visible';
     });
