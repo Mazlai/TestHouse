@@ -51,11 +51,20 @@ body {
   color: white;
 }
 
-.rules p, .token-selection p {
+.rules p, .token-selection p, #timer {
   color: white;
   font-family: 'Ubuntu', sans-serif;
   font-size: 18px;
   margin-bottom: 20px;
+}
+
+#timer {
+  font-style:italic;
+}
+
+#countdown {
+  font-weight: bold;
+  color:red;
 }
 
 .rules p {

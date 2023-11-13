@@ -108,6 +108,7 @@ class P4 {
             const victoryMessage = document.getElementById('victory-message');
             victoryMessage.textContent = `Le joueur ${winner} a gagné !`;
             victoryMessage.style.display = 'block';
+            document.getElementById('game').style.display = 'none';
             document.getElementById('player-turn').style.visibility = 'hidden';
             document.querySelector('.after-win').style.display = 'block';
           }

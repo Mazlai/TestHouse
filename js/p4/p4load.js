@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const afterWin = document.querySelector('.after-win');
 
   // Variables boutons et textes
+  const countdownElement = document.getElementById('countdown');
   const playerMessage = document.getElementById('player-message');
   const tokenGrid = document.getElementById('token-grid');
   const playButton = document.getElementById('play');
@@ -29,9 +30,37 @@ document.addEventListener('DOMContentLoaded', function() {
   const returnToHomeFromGameBtn = document.getElementById('return-to-home-from-game');
 
   // Autres variables (localStorage, P4 et stockage des couleurs des jetons)
+  let currentTheme = localStorage.getItem('currentTheme');
   let player1TokenImage = null;
   let player2TokenImage = null;
-  let currentTheme = localStorage.getItem('currentTheme');
+  const numberOfTokens = 40;
+  let tokensToShowInitially = 4;
+  let currentHour = new Date().getHours();
+
+  function updateCountdown() {
+    const now = new Date();
+    const midnight = new Date(now);
+    midnight.setHours(24, 0, 0, 0); // Réglez l'heure sur minuit
+    const timeRemaining = midnight - now;
+
+    const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
+    const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+    countdownElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
+  }
+
+  // Mise à jour du temps et des jetons toutes les secondes
+  setInterval(() => {
+    updateCountdown();
+
+    currentHour = new Date().getHours();
+    console.log('currentHour :', currentHour);
+    if (currentHour === 0) {
+      tokensToShowInitially++;
+      createTokens(); // Mettez à jour les jetons lorsque vous débloquez un nouveau jeton
+    }
+  }, 1000);
 
   // Cache tout sauf la page d'accueil
   gamePage.style.display = 'none';
@@ -53,46 +82,55 @@ document.addEventListener('DOMContentLoaded', function() {
     async function createTokens() {
       // Supprimez tous les jetons existants
       tokenGrid.innerHTML = '';
-
-      for (let i = 0; i < 40; i++) { // Créez 40 jetons pour une grille 10x4
+  
+      for (let i = 0; i < numberOfTokens; i++) {
+        // Créez 40 jetons pour une grille 10x4
         const token = document.createElement('div');
         const image = document.createElement('img');
         token.className = 'token-selector'; // Ajoutez la classe token-selector
         tokenGrid.appendChild(token);
-
-        // Appliquez la couleur du fichier JSON au fond du jeton
-        const imagePath = images[i];
+  
+        // Appliquez la visibilité en fonction du nombre de jours
+        if (i < tokensToShowInitially) {
+          token.style.visibility = 'visible';
+        } else {
+          token.style.visibility = 'hidden';
+        }
+  
+        const imagePath = images[i]; 
         image.src = imagePath;
-
+  
         token.appendChild(image);
-
+  
         // Ajoutez un écouteur d'événements pour le clic
         token.addEventListener('click', function () {
           // Si le joueur 1 n'a pas encore choisi, attribuez la couleur au joueur 1
           if (player1TokenImage === null) {
             player1TokenImage = imagePath;
-              token.classList.add('selected-player1');
-              playerMessage.textContent = "C'est au Joueur 2 de sélectionner son jeton.";
+            token.classList.add('selected-player1');
+            document.querySelector('.selected-player1').style.visibility = 'hidden';
+            playerMessage.textContent = "C'est au Joueur 2 de sélectionner son jeton.";
           } else if (player2TokenImage === null && imagePath !== player1TokenImage) {
-              // Si le joueur 2 n'a pas encore choisi et la couleur est différente de celle du joueur 1, attribuez la couleur au joueur 2
-              player2TokenImage = imagePath;
-              token.classList.add('selected-player2');
-              playerMessage.textContent = "Les joueurs ont sélectionné leurs jetons. Cliquez sur 'Commencer'.";
-              startGameButton.style.visibility = 'visible';
+            // Si le joueur 2 n'a pas encore choisi et la couleur est différente de celle du joueur 1, attribuez la couleur au joueur 2
+            player2TokenImage = imagePath;
+            token.classList.add('selected-player2');
+            document.querySelector('.selected-player2').style.visibility = 'hidden';
+            playerMessage.textContent = "Les joueurs ont sélectionné leurs jetons. Cliquez sur 'Commencer'.";
+            startGameButton.style.visibility = 'visible';
           }
           // Si les deux joueurs ont choisi, activez le bouton "Jouer"
           if (player1TokenImage !== null && player2TokenImage !== null) {
-              playButton.disabled = false;
+            playButton.disabled = false;
           }
         });
       }
     }
+
     createTokens();
   });
 
   startGameButton.addEventListener('click', function() {
 
-    console.log(player1TokenImage, player2TokenImage);
     // Affiche la grille et le changement de joueur et les pieds de la grille
     const p4 = new P4('#game', player1TokenImage, player2TokenImage);
 
@@ -105,6 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
     restartButton.addEventListener('click', function() {
       p4.createGrid();
       afterWin.style.display = 'none';
+      gameElement.style.display = 'block';
       playerTurn.style.visibility = 'visible';
       victoryMessage.style.display = 'none';
     });
@@ -114,6 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
       p4.resetGame();
       gamePage.style.display = 'none';
       afterWin.style.display = 'none';
+      gameElement.style.display = 'block';
       homePage.style.display = 'block';
       victoryMessage.style.display = 'none';
     });
