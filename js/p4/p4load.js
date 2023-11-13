@@ -29,8 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const returnToHomeFromGameBtn = document.getElementById('return-to-home-from-game');
 
   // Autres variables (localStorage, P4 et stockage des couleurs des jetons)
-  let player1TokenColor = null;
-  let player2TokenColor = null;
+  let player1TokenImage = null;
+  let player2TokenImage = null;
   let currentTheme = localStorage.getItem('currentTheme');
 
   // Cache tout sauf la page d'accueil
@@ -46,8 +46,8 @@ document.addEventListener('DOMContentLoaded', function() {
     homePage.style.display = 'none';
     choosePage.style.display = 'block';
 
-    player1TokenColor = null;
-    player2TokenColor = null;
+    player1TokenImage = null;
+    player2TokenImage = null;
 
     // Fonction pour créer les jetons
     async function createTokens() {
@@ -56,30 +56,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
       for (let i = 0; i < 40; i++) { // Créez 40 jetons pour une grille 10x4
         const token = document.createElement('div');
+        const image = document.createElement('img');
         token.className = 'token-selector'; // Ajoutez la classe token-selector
         tokenGrid.appendChild(token);
 
         // Appliquez la couleur du fichier JSON au fond du jeton
-        const color = colors[i];
+        const imagePath = images[i];
+        image.src = imagePath;
 
-        token.style.backgroundColor = color;
+        token.appendChild(image);
 
         // Ajoutez un écouteur d'événements pour le clic
         token.addEventListener('click', function () {
           // Si le joueur 1 n'a pas encore choisi, attribuez la couleur au joueur 1
-          if (player1TokenColor === null) {
-              player1TokenColor = color;
+          if (player1TokenImage === null) {
+            player1TokenImage = imagePath;
               token.classList.add('selected-player1');
               playerMessage.textContent = "C'est au Joueur 2 de sélectionner son jeton.";
-          } else if (player2TokenColor === null && color !== player1TokenColor) {
+          } else if (player2TokenImage === null && imagePath !== player1TokenImage) {
               // Si le joueur 2 n'a pas encore choisi et la couleur est différente de celle du joueur 1, attribuez la couleur au joueur 2
-              player2TokenColor = color;
+              player2TokenImage = imagePath;
               token.classList.add('selected-player2');
               playerMessage.textContent = "Les joueurs ont sélectionné leurs jetons. Cliquez sur 'Commencer'.";
               startGameButton.style.visibility = 'visible';
           }
           // Si les deux joueurs ont choisi, activez le bouton "Jouer"
-          if (player1TokenColor !== null && player2TokenColor !== null) {
+          if (player1TokenImage !== null && player2TokenImage !== null) {
               playButton.disabled = false;
           }
         });
@@ -90,8 +92,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   startGameButton.addEventListener('click', function() {
 
+    console.log(player1TokenImage, player2TokenImage);
     // Affiche la grille et le changement de joueur et les pieds de la grille
-    const p4 = new P4('#game', player1TokenColor, player2TokenColor);
+    const p4 = new P4('#game', player1TokenImage, player2TokenImage);
 
     choosePage.style.display = 'none';
     gamePage.style.display = 'block';

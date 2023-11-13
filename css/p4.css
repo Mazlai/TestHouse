@@ -111,7 +111,7 @@ body.theme2, .home.theme2, .token-selection.theme2, .rules.theme2, .theme-option
   margin: 20px 10px 20px 10px;
 }
 
-.token-selector {
+.token-selector img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -200,20 +200,20 @@ body.theme2, .home.theme2, .token-selection.theme2, .rules.theme2, .theme-option
 
 /* Remplissage des cellules */
 .col.un {
-  background-color: var(--player1-color);
+  content: var(--player1-image);
 }
 
 .col.deux {
-  background-color: var(--player2-color);
+  content: var(--player2-image);
 }
 
 .col.pun {
-  background-color: var(--player1-color);
+  content: var(--player1-image);
   opacity: 0.7;
 }
 
 .col.pdeux {
-  background-color: var(--player2-color);
+  content: var(--player2-image);
   opacity: 0.7;
 }
 

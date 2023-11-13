@@ -1,10 +1,10 @@
 class P4 {
-  constructor(selector, player1Color, player2Color) {
+  constructor(selector, player1Image, player2Image) {
     this.col = 7;
     this.row = 6;
     this.selector = selector;
-    this.player1Color = player1Color;
-    this.player2Color = player2Color;
+    this.player1Image = player1Image;
+    this.player2Image = player2Image;
     this.player = 'un';
 
     this.createGrid();
@@ -28,8 +28,8 @@ class P4 {
         newCol.dataset.row = row;
 
         // Définir les variables CSS personnalisées
-        newCol.style.setProperty('--player1-color', this.player1Color);
-        newCol.style.setProperty('--player2-color', this.player2Color);
+        newCol.style.setProperty('--player1-image', `url('../${this.player1Image}')`);
+        newCol.style.setProperty('--player2-image', `url('../${this.player2Image}')`);
 
         newRow.appendChild(newCol);
       }
