@@ -229,14 +229,6 @@ footer {
     background-color: #ffcc00;
 }
 
-.sound-button.sound-on {
-    background-image: url('../images/home/sound.png');
-}
-
-.sound-button.sound-off {
-    background-image: url('../images/home/deaf.png');
-}
-
 .main-button {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 16px;

@@ -4,10 +4,6 @@ let loadingScreen = document.querySelector('.loading-screen');
 let whoAmIContainer = document.getElementById('whoami');
 let mysteriesContainer = document.getElementById('mysteries');
 
-let soundButton = document.querySelector('.sound-button');
-let soundOn = true;
-let audioElement = new Audio('audio/wind.mp3');
-
 let gameButton = document.getElementById('game-button');
 let imageContainer = document.getElementById('image-container');
 let returnButton = document.getElementById('return-button');
@@ -33,21 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 1000);
         }, 3000);
     }, 0)
-});
-
-// Bouton pour activer/désactiver le son
-soundButton.addEventListener('click', function() {
-    soundOn = !soundOn;
-    soundButton.classList.toggle('sound-off', !soundOn);
-    soundButton.classList.toggle('sound-on', soundOn);
-
-    if (soundOn) {
-        audioElement.play();
-        audioElement.volume = 0.2;
-        audioElement.loop = true;
-    } else {
-        audioElement.pause();
-    }
 });
 
 // Affiche l'overlay et les images du jeu

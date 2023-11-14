@@ -6,8 +6,12 @@
     <title>TestHouse - Accueil</title>
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="icon" type="image/png" href="./images/home/building.png" />
+    <script src="./js/home/defaultSound.js"></script>
 </head>
 <body>
+    <audio id="backgroundMainMusic" autoplay loop>
+        <source src="./audio/wind.mp3" type="audio/mp3">
+    </audio>
     <div class="loading-screen">
         <div class="loading-circle">
             <div class="loading-fill"></div>
@@ -15,7 +19,7 @@
         <div class="loading-text">Chargement en cours<span class="dots">...</span></div>
     </div>
     <div class="main-content">
-        <button class="sound-button sound-off"></button>
+        <button class="sound-button"></button>
         <div class="main-container">
             <h1 class="site-title">TestHouse</h1>
             <div class="button-container">
