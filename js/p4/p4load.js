@@ -16,6 +16,10 @@ document.addEventListener('DOMContentLoaded', function() {
   const playButton = document.getElementById('play');
   const rulesButton = document.getElementById('rules');
   const themeBtn = document.getElementById('theme-btn');
+  const audioBtn = document.getElementById('playPauseButton');
+  const audio = document.getElementById('backgroundMusic');
+  const playPauseButton = document.getElementById('playPauseButton');
+  const volumeControl = document.getElementById('volumeControl');
   const themeOptionsButtons = document.querySelectorAll('.theme-option');
   const defaultBtn = document.getElementById('default');
   const firstThemeBtn = document.getElementById('theme1');
@@ -158,6 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
     playButton.className = theme;
     rulesButton.className = theme;
     themeBtn.className = theme;
+    audioBtn.className = theme;
     defaultBtn.className = theme;
     firstThemeBtn.className = theme;
     secondThemeBtn.className = theme;
@@ -190,5 +195,21 @@ document.addEventListener('DOMContentLoaded', function() {
   returnToHomeFromThemesBtn.addEventListener('click', function() {
     homePage.style.display = 'block';
     themeOptions.style.display = 'none';
+  });
+
+  // Événement pour le bouton de lecture/pause
+  playPauseButton.addEventListener('click', function () {
+    if (audio.paused) {
+        audio.play();
+        playPauseButton.textContent = 'Pause';
+    } else {
+        audio.pause();
+        playPauseButton.textContent = 'Play';
+    }
+  });
+
+  // Événement pour le contrôle de volume
+  volumeControl.addEventListener('input', function () {
+      audio.volume = volumeControl.value;
   });
 });

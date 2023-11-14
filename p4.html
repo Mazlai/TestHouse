@@ -17,6 +17,15 @@
         <button class="default" id="play">Jouer</button>
         <button class="default" id="rules">Règles</button>
         <button class="default" id="theme-btn">Thème</button>
+        <audio id="backgroundMusic" autoplay loop>
+            <source src="./audio/Nessun_Dorma.mp3" type="audio/mp3">
+        </audio>
+        <div id="audioControls">
+            <button id="playPauseButton">Play/Pause</button>
+            <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="1">
+            <p><b>Son : </b>Nessun Dorma<br>
+            <b>Music by : </b><a href="https://www.fiftysounds.com">https://www.fiftysounds.com</a></p>
+        </div>
     </div>
 
     <div class="token-selection default">

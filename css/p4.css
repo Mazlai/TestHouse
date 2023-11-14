@@ -67,6 +67,19 @@ body {
   margin-bottom: 20px;
 }
 
+#audioControls, #audioControls a {
+  color:white;
+  font-family: 'Ubuntu', sans-serif;
+  font-size:12px;
+  text-decoration: none;
+}
+
+#audioControls a:hover {
+  text-decoration: underline;
+  color:yellow;
+  transition:0.3s ease-in-out;
+}
+
 /* Thèmes */
 body.default {
   background-color: #ffffaf;
@@ -80,11 +93,11 @@ body.theme1, .home.theme1, .token-selection.theme1, .rules.theme1, .theme-option
   background-color: #3498db;
 }
 
-.home button.theme1, .token-selection button.theme1, .rules button.theme1, .theme-options button.theme1 {
+.home button.theme1, .token-selection button.theme1, .rules button.theme1, .theme-options button.theme1, #audioControls button.theme1 {
   color: #3498db;
 }
 
-.home button.theme1:hover, .token-selection button.theme1:hover, .rules button.theme1:hover, .theme-options button.theme1:hover {
+.home button.theme1:hover, .token-selection button.theme1:hover, .rules button.theme1:hover, .theme-options button.theme1:hover, #audioControls button.theme1:hover {
   background-color: #3498db;
   color:white;
 }
@@ -93,11 +106,11 @@ body.theme2, .home.theme2, .token-selection.theme2, .rules.theme2, .theme-option
   background-color: #e74c3c;
 }
 
-.home button.theme2, .token-selection button.theme2, .rules button.theme2, .theme-options button.theme2 {
+.home button.theme2, .token-selection button.theme2, .rules button.theme2, .theme-options button.theme2, #audioControls button.theme2 {
   color: #e74c3c;
 }
 
-.home button.theme2:hover, .token-selection button.theme2:hover, .rules button.theme2:hover, .theme-options button.theme2:hover {
+.home button.theme2:hover, .token-selection button.theme2:hover, .rules button.theme2:hover, .theme-options button.theme2:hover, #audioControls button.theme2:hover {
   background-color: #e74c3c;
   color:white;
 }
