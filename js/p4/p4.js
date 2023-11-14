@@ -61,9 +61,9 @@ class P4 {
     // Affiche le jeton du joueur actuel lorsqu'il passe la souris sur la colonne
     this.handleMouseEnter = (event) => {
       const target = event.target;
-      const colElement = target.closest('.col.empty');
+      const colElement = target.closest('.col');
 
-      if (colElement) {
+      if (colElement && colElement.classList.contains('empty')) {
         const col = colElement.dataset.col;
         const lastEmptyCell = lastCase(col);
 
