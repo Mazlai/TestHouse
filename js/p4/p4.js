@@ -128,8 +128,8 @@ class P4 {
 
     // Suppression de l'écouteur d'événements
     board.removeEventListener('click', this.handleEvent);
-    board.removeEventListener('mouseenter', this.handleMouseEnter);
-    board.removeEventListener('mouseleave', this.handleMouseLeave);
+    board.removeEventListener('mouseenter', this.handleMouseEnter, true);
+    board.removeEventListener('mouseleave', this.handleMouseLeave, true);
   }
 
   // Fonction pour réinitialiser la grille et les écouteurs d'événements
