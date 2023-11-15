@@ -16,10 +16,10 @@ document.addEventListener('DOMContentLoaded', function() {
   const playButton = document.getElementById('play');
   const rulesButton = document.getElementById('rules');
   const themeBtn = document.getElementById('theme-btn');
-  const audioBtn = document.getElementById('playPauseButton');
   const audio = document.getElementById('backgroundMusic');
   const playPauseButton = document.getElementById('playPauseButton');
   const volumeControl = document.getElementById('volumeControl');
+  const returnToHubFromHome = document.getElementById('return-to-hub');
   const themeOptionsButtons = document.querySelectorAll('.theme-option');
   const defaultBtn = document.getElementById('default');
   const firstThemeBtn = document.getElementById('theme1');
@@ -162,7 +162,8 @@ document.addEventListener('DOMContentLoaded', function() {
     playButton.className = theme;
     rulesButton.className = theme;
     themeBtn.className = theme;
-    audioBtn.className = theme;
+    playPauseButton.className = theme;
+    returnToHubFromHome.className = theme;
     defaultBtn.className = theme;
     firstThemeBtn.className = theme;
     secondThemeBtn.className = theme;
