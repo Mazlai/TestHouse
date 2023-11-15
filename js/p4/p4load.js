@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
     restartButton.addEventListener('click', function() {
       p4.createGrid();
       afterWin.style.display = 'none';
-      gameElement.style.display = 'block';
+      gameElement.classList.remove('disabled-div'); 
       playerTurn.style.visibility = 'visible';
       victoryMessage.style.display = 'none';
     });
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
       p4.resetGame();
       gamePage.style.display = 'none';
       afterWin.style.display = 'none';
-      gameElement.style.display = 'block';
+      gameElement.classList.remove('disabled-div'); 
       homePage.style.display = 'block';
       victoryMessage.style.display = 'none';
     });

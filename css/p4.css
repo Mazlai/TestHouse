@@ -230,6 +230,10 @@ body.theme2, .home.theme2, .token-selection.theme2, .rules.theme2, .theme-option
   opacity: 0.7;
 }
 
+.disabled-div {
+  pointer-events: none;
+}
+
 /* Bouton pour recommencer et revenir à l'accueil*/
 #restart, #return-to-home-from-game {
   margin-top: 20px; 
