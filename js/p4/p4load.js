@@ -66,7 +66,8 @@ document.addEventListener('DOMContentLoaded', function() {
         token.className = 'token-selector'; // Ajoutez la classe token-selector
         tokenGrid.appendChild(token);
   
-        const imagePath = images[i]; 
+        const imagePath = images[i].src; 
+        const soundPath = images[i].son;
         image.src = imagePath;
   
         token.appendChild(image);
@@ -75,11 +76,15 @@ document.addEventListener('DOMContentLoaded', function() {
         token.addEventListener('click', function () {
           // Si le joueur 1 n'a pas encore choisi, attribuez la couleur au joueur 1
           if (player1TokenImage === null) {
+            const sound = new Audio(soundPath);
+            sound.play();
             player1TokenImage = imagePath;
             token.classList.add('selected-player1');
             playerMessage.textContent = "C'est au Joueur 2 de sélectionner son jeton.";
           } else if (player2TokenImage === null && imagePath !== player1TokenImage) {
             // Si le joueur 2 n'a pas encore choisi et la couleur est différente de celle du joueur 1, attribuez la couleur au joueur 2
+            const sound = new Audio(soundPath);
+            sound.play();
             player2TokenImage = imagePath;
             token.classList.add('selected-player2');
             playerMessage.textContent = "Les joueurs ont sélectionné leurs jetons. Cliquez sur 'Commencer'.";
