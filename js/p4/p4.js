@@ -43,6 +43,17 @@ class P4 {
     playerTurn.textContent = `C'est au tour du joueur ${this.player}`;
   }
 
+  // Vérifie s'il reste des colonnes vides
+  checkIfEmptyColumnsExist() {
+    const cells = document.querySelectorAll('.col');
+    for (let cell of cells) {
+      if (cell.classList.contains('empty')) {
+        return true; // Il reste au moins une colonne vide
+      }
+    }
+    return false; // Aucune colonne vide
+  }
+
   // Écoute les événements
   addEventListeners() {
     const board = document.querySelector(this.selector);
@@ -103,11 +114,23 @@ class P4 {
           this.player = (this.player === 'un') ? 'deux' : 'un';
           this.updatePlayerTurn();
 
+          // Vérifie s'il y a un gagnant 
           if (winner) {
             confetti();
             const victoryMessage = document.getElementById('victory-message');
             victoryMessage.textContent = `Le joueur ${winner} a gagné !`;
             victoryMessage.style.display = 'block';
+            document.getElementById('game').classList.add('disabled-div'); 
+            document.getElementById('player-turn').style.visibility = 'hidden';
+            document.querySelector('.after-win').style.display = 'block';
+          }
+
+          // Vérifie s'il y a une égalité
+          if (!this.checkIfEmptyColumnsExist()) {
+            // Il n'y a plus de colonnes vides, c'est une égalité
+            const drawMessage = document.getElementById('victory-message');
+            drawMessage.textContent = `Le jeu est une égalité !`;
+            drawMessage.style.display = 'block';
             document.getElementById('game').classList.add('disabled-div'); 
             document.getElementById('player-turn').style.visibility = 'hidden';
             document.querySelector('.after-win').style.display = 'block';
