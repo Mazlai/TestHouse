@@ -134,6 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
   returnToHomeFromTokenSelectionBtn.addEventListener('click', function() {
     choosePage.style.display = 'none';
     homePage.style.display = 'block';
+    resetTokenSelection();
   });
 
   // Événement pour le bouton Règles
@@ -153,6 +154,19 @@ document.addEventListener('DOMContentLoaded', function() {
     homePage.style.display = 'none';
     themeOptions.style.display = 'block';
   });
+
+  // Fonction pour reset le choix des jetons
+  function resetTokenSelection() {
+    const tokens = document.querySelectorAll('.token-selector');
+    tokens.forEach(token => {
+      token.classList.remove('selected-player1', 'selected-player2');
+    });
+  
+    player1TokenImage = null;
+    player2TokenImage = null;
+
+    playerMessage.textContent = "C'est au Joueur 1 de sélectionner son jeton.";
+  }
 
   // Fonction pour changer de thème
   function changeTheme(theme) {

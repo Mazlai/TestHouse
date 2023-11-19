@@ -253,3 +253,11 @@ body.theme2, .home.theme2, .token-selection.theme2, .rules.theme2, .theme-option
   background-color: darkblue;
   transition:0.2s ease-in-out;
 }
+
+/* Media query pour les écrans plus petits */
+@media screen and (max-width: 768px) {
+  #token-grid {
+    grid-template-columns: repeat(5, 1fr); /* 5 colonnes pour les écrans plus petits */
+    grid-template-rows: repeat(8, 1fr); /* 8 lignes pour les écrans plus petits */
+  }
+}
