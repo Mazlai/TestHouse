@@ -33,10 +33,10 @@ const images = [
     {src: "./images/p4/tokens/sqlvoielactee.png", son:"./audio/p4/oof.mp3"},
     {src: "./images/p4/tokens/chine.png", son:"./audio/p4/hai-soncroissant.mp3"},
     {src: "./images/p4/tokens/psedjango.png", son:"./audio/p4/oof.mp3"},
-    {src: "./images/p4/tokens/uh.png", son:"./audio/p4/oof.mp3"},
+    {src: "./images/p4/tokens/uh.png", son:"./audio/p4/mateophrase.mp3"},
     {src: "./images/p4/tokens/fapsimulator.png", son:"./audio/p4/oof.mp3"},
     {src: "./images/p4/tokens/psoenslip.png", son:"./audio/p4/oof.mp3"},
     {src: "./images/p4/tokens/jp.png", son:"./audio/p4/oof.mp3"},
     {src: "./images/p4/tokens/abbenoir.jpeg", son:"./audio/p4/oof.mp3"},
-    {src: "./images/p4/tokens/tg.jpg", son:"./audio/p4/oof.mp3"}
+    {src: "./images/p4/tokens/hugogo.PNG", son:"./audio/p4/oof.mp3"}
 ];
