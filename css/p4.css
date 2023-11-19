@@ -260,4 +260,13 @@ body.theme2, .home.theme2, .token-selection.theme2, .rules.theme2, .theme-option
     grid-template-columns: repeat(5, 1fr); /* 5 colonnes pour les écrans plus petits */
     grid-template-rows: repeat(8, 1fr); /* 8 lignes pour les écrans plus petits */
   }
+
+  .col {
+    width:35px;
+    height:35px;
+  }
+
+  #player-turn, #victory-message {
+    width:363px;
+  }
 }
