@@ -15,7 +15,7 @@ const images = [
     {src: "./images/p4/tokens/le_vé.jpg", son:"./audio/p4/oof.mp3"},
     {src: "./images/p4/tokens/blatte.png", son:"./audio/p4/oof.mp3"},
     {src: "./images/p4/tokens/simpamarseille.JPG", son:"./audio/p4/oof.mp3"},
-    {src: "./images/p4/tokens/nicokado.PNG", son:"./audio/p4/oof.mp3"},
+    {src: "./images/p4/tokens/nicokado.PNG", son:"./audio/p4/nicojesus.mp3"},
     {src: "./images/p4/tokens/cycledevie.png", son:"./audio/p4/guillaumeconcept.mp3"},
     {src: "./images/p4/tokens/mdm84.png", son:"./audio/p4/oof.mp3"},
     {src: "./images/p4/tokens/bastoche.jpg", son:"./audio/p4/bastienamasse.mp3"},
@@ -25,7 +25,7 @@ const images = [
     {src: "./images/p4/tokens/sin.jpg", son:"./audio/p4/seanheureux.mp3"},
     {src: "./images/p4/tokens/clemcledebras.PNG", son:"./audio/p4/salutcclement.mp3"},
     {src: "./images/p4/tokens/ilestencours.png", son:"./audio/p4/oof.mp3"},
-    {src: "./images/p4/tokens/coutax.jpeg", son:"./audio/p4/oof.mp3"},
+    {src: "./images/p4/tokens/coutax.jpeg", son:"./audio/p4/ouipouet_du_fion.mp3"},
     {src: "./images/p4/tokens/homosapiens.PNG", son:"./audio/p4/oof.mp3"},
     {src: "./images/p4/tokens/jagercar.JPG", son:"./audio/p4/oof.mp3"},
     {src: "./images/p4/tokens/hugeface.jpg", son:"./audio/p4/tilian_sus.wav"},
@@ -37,6 +37,6 @@ const images = [
     {src: "./images/p4/tokens/fapsimulator.png", son:"./audio/p4/oof.mp3"},
     {src: "./images/p4/tokens/psoenslip.png", son:"./audio/p4/oof.mp3"},
     {src: "./images/p4/tokens/jp.png", son:"./audio/p4/oof.mp3"},
-    {src: "./images/p4/tokens/abbenoir.jpeg", son:"./audio/p4/oof.mp3"},
+    {src: "./images/p4/tokens/abbenoir.jpeg", son:"./audio/p4/maximebaignoire.mp3"},
     {src: "./images/p4/tokens/hugogo.PNG", son:"./audio/p4/oof.mp3"}
 ];
