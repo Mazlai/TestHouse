@@ -119,6 +119,7 @@ footer {
     color: #fff;
     text-align: center;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.8); /* Ombre pour l'effet de relief */
+    animation: pulse 2s infinite;
 }
 
 .overlay {
@@ -143,14 +144,13 @@ footer {
 }
 
 .frame-image {
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-    float: left;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
 }
 
 .frame-image img {
@@ -164,6 +164,19 @@ footer {
     position: absolute;
     transition: transform 0.5s;
     cursor:pointer;
+}
+
+.game-name {
+    position: relative;
+    top:30%;
+    background-color: #ffcc00;
+    box-shadow: 0 4px 8px rgba(255, 204, 0, 0.1);
+    color: black;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
 }
 
 #color-container {
@@ -227,6 +240,7 @@ footer {
     border: none;
     cursor: pointer;
     background-color: #ffcc00;
+    animation: pulse 1.5s infinite;
 }
 
 .main-button {
@@ -241,6 +255,7 @@ footer {
     border-radius: 5px;
     width: 150px;
     transition: background-color 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .main-button:nth-child(odd) {
@@ -265,4 +280,13 @@ footer {
 @keyframes fade {
     0% { opacity: 1; }
     100% { opacity: 0; }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
 }
