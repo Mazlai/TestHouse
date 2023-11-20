@@ -117,6 +117,7 @@ class P4 {
           // Vérifie s'il y a un gagnant 
           if (winner) {
             confetti();
+            // Affiche le message de victoire
             const victoryMessage = document.getElementById('victory-message');
             victoryMessage.textContent = `Le joueur ${winner} a gagné !`;
             victoryMessage.style.display = 'block';

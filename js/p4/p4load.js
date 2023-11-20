@@ -180,7 +180,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Désactivez le bouton "Revenir au choix précédent"
         undoButton.style.visibility = 'hidden';
       });
-
     }
   }
 
