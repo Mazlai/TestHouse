@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
+  /*----------| Variables |----------*/
+  
   // Variables div
   const homePage = document.querySelector('.home');
   const choosePage = document.querySelector('.token-selection');
@@ -39,6 +41,8 @@ document.addEventListener('DOMContentLoaded', function() {
   let player2TokenImage = null;
   let numberOfTokens = 40;
 
+  /*----------| Styles par défaut |----------*/
+
   // Cache tout sauf la page d'accueil
   gamePage.style.display = 'none';
   choosePage.style.display = 'none';
@@ -47,6 +51,8 @@ document.addEventListener('DOMContentLoaded', function() {
   afterWin.style.display = 'none';
   victoryMessage.style.display = 'none';
 
+  /*----------| Événements |----------*/
+
   playButton.addEventListener('click', function() {
     // Cache la page d'accueil et affiche la sélection des jetons
     homePage.style.display = 'none';
@@ -54,70 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     player1TokenImage = null;
     player2TokenImage = null;
-
-    // Fonction pour créer les jetons
-    async function createTokens() {
-      // Supprimez tous les jetons existants
-      tokenGrid.innerHTML = '';
-  
-      for (let i = 0; i < numberOfTokens; i++) {
-        // Création de 40 jetons pour une grille 10x4
-        const token = document.createElement('div');
-        const image = document.createElement('img');
-        token.className = 'token-selector'; // Ajoutez la classe token-selector
-        tokenGrid.appendChild(token);
-  
-        const imagePath = images[i].src; 
-        const soundPath = images[i].son;
-        image.src = imagePath;
-  
-        token.appendChild(image);
-  
-        // Écouteur d'événements pour le clic du jeton
-        token.addEventListener('click', function () {
-          // Si le joueur 1 n'a pas encore choisi, attribuez la couleur au joueur 1
-          if (player1TokenImage === null) {
-            const sound = new Audio(soundPath);
-            sound.play();
-            player1TokenImage = imagePath;
-            token.classList.add('selected-player1');
-            playerMessage.textContent = "C'est au Joueur 2 de sélectionner son jeton.";
-            undoButton.style.visibility = 'visible';
-          } else if (player2TokenImage === null && imagePath !== player1TokenImage) {
-            // Si le joueur 2 n'a pas encore choisi et la couleur est différente de celle du joueur 1, attribuez la couleur au joueur 2
-            const sound = new Audio(soundPath);
-            sound.play();
-            player2TokenImage = imagePath;
-            token.classList.add('selected-player2');
-            playerMessage.textContent = "Les joueurs ont sélectionné leurs jetons. Cliquez sur 'Commencer'.";
-            startGameButton.style.visibility = 'visible';
-          }
-          // Si les deux joueurs ont choisi, activez le bouton "Jouer"
-          if (player1TokenImage !== null && player2TokenImage !== null) {
-            playButton.disabled = false;
-          }
-        });
-
-        // Écouteur d'événements pour le bouton "Revenir au choix précédent"
-        undoButton.addEventListener('click', function() {
-          // Logique pour revenir au choix précédent
-          if (player2TokenImage !== null) {
-              // Si le joueur 2 a choisi, annulez sa sélection
-              resetTokenSelection();
-              playerMessage.textContent = "C'est au Joueur 1 de sélectionner son jeton.";
-              startGameButton.style.visibility = 'hidden';
-          } else if (player1TokenImage !== null) {
-              // Si le joueur 1 a choisi, annulez sa sélection
-              resetTokenSelection();
-              playerMessage.textContent = "C'est au Joueur 1 de sélectionner son jeton.";
-          }
-
-          // Désactivez le bouton "Revenir au choix précédent"
-          undoButton.style.visibility = 'hidden';
-        });
-
-      }
-    }
 
     createTokens();
   });
@@ -175,6 +117,72 @@ document.addEventListener('DOMContentLoaded', function() {
     homePage.style.display = 'none';
     themeOptions.style.display = 'block';
   });
+
+  /*----------| Fonctions |----------*/
+
+  // Fonction pour créer les jetons
+  async function createTokens() {
+    // Supprimez tous les jetons existants
+    tokenGrid.innerHTML = '';
+
+    for (let i = 0; i < numberOfTokens; i++) {
+      // Création de 40 jetons pour une grille 10x4
+      const token = document.createElement('div');
+      const image = document.createElement('img');
+      token.className = 'token-selector'; // Ajoutez la classe token-selector
+      tokenGrid.appendChild(token);
+
+      const imagePath = images[i].src; 
+      const soundPath = images[i].son;
+      image.src = imagePath;
+
+      token.appendChild(image);
+
+      // Écouteur d'événements pour le clic du jeton
+      token.addEventListener('click', function () {
+        // Si le joueur 1 n'a pas encore choisi, attribuez la couleur au joueur 1
+        if (player1TokenImage === null) {
+          const sound = new Audio(soundPath);
+          sound.play();
+          player1TokenImage = imagePath;
+          token.classList.add('selected-player1');
+          playerMessage.textContent = "C'est au Joueur 2 de sélectionner son jeton.";
+          undoButton.style.visibility = 'visible';
+        } else if (player2TokenImage === null && imagePath !== player1TokenImage) {
+          // Si le joueur 2 n'a pas encore choisi et la couleur est différente de celle du joueur 1, attribuez la couleur au joueur 2
+          const sound = new Audio(soundPath);
+          sound.play();
+          player2TokenImage = imagePath;
+          token.classList.add('selected-player2');
+          playerMessage.textContent = "Les joueurs ont sélectionné leurs jetons. Cliquez sur 'Commencer'.";
+          startGameButton.style.visibility = 'visible';
+        }
+        // Si les deux joueurs ont choisi, activez le bouton "Jouer"
+        if (player1TokenImage !== null && player2TokenImage !== null) {
+          playButton.disabled = false;
+        }
+      });
+
+      // Écouteur d'événements pour le bouton "Revenir au choix précédent"
+      undoButton.addEventListener('click', function() {
+        // Logique pour revenir au choix précédent
+        if (player2TokenImage !== null) {
+            // Si le joueur 2 a choisi, annulez sa sélection
+            resetTokenSelection();
+            playerMessage.textContent = "C'est au Joueur 1 de sélectionner son jeton.";
+            startGameButton.style.visibility = 'hidden';
+        } else if (player1TokenImage !== null) {
+            // Si le joueur 1 a choisi, annulez sa sélection
+            resetTokenSelection();
+            playerMessage.textContent = "C'est au Joueur 1 de sélectionner son jeton.";
+        }
+
+        // Désactivez le bouton "Revenir au choix précédent"
+        undoButton.style.visibility = 'hidden';
+      });
+
+    }
+  }
 
   // Fonction pour reset le choix des jetons
   function resetTokenSelection() {
