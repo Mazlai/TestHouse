@@ -111,12 +111,33 @@ class P4 {
             parseInt(lastEmptyCell.dataset.col)
           );
 
+          console.log(winner);
+
           this.player = (this.player === 'un') ? 'deux' : 'un';
           this.updatePlayerTurn();
 
           // Vérifie s'il y a un gagnant 
           if (winner) {
             confetti();
+
+            // Recherche de l'objet correspondant au joueur gagnant par le chemin de l'image
+            const winningToken = images.find(img => 
+              (img.src === this.player1Image && winner === 'un') || 
+              (img.src === this.player2Image && winner === 'deux')
+            );
+
+            console.log(this.player1Image);
+            console.log(this.player2Image);
+
+            console.log(winningToken);
+
+            // Si l'objet est trouvé, récupérez le son de victoire et jouez-le
+            if (winningToken && winningToken.victoire) {
+              const victoireSound = new Audio(winningToken.victoire);
+              console.log(victoireSound);
+              victoireSound.play();
+            }
+
             // Affiche le message de victoire
             const victoryMessage = document.getElementById('victory-message');
             victoryMessage.textContent = `Le joueur ${winner} a gagné !`;
