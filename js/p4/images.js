@@ -70,10 +70,7 @@ const images = [
      son:"./audio/p4/oof.mp3",
      victoire:"./audio/p4/oof.mp3"},
 
-    {src: "./images/p4/tokens/jagercar.JPG", 
-     son:"./audio/p4/oof.mp3",
-     victoire:"./audio/p4/oof.mp3"},
-
+    {src: "./images/p4/tokens/jagercar.JPG", son:"./audio/p4/enzolasalle.m4a", victoire:"./audio/p4victory/enzovictory.m4a"},
     {src: "./images/p4/tokens/hugeface.jpg", son:"./audio/p4/tilian_sus.wav", victoire:"./audio/p4victory/tilian_victory.wav"},
 
     {src: "./images/p4/tokens/de-oof.png", 
