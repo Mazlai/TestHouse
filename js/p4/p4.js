@@ -126,10 +126,7 @@ class P4 {
               (img.src === this.player2Image && winner === 'deux')
             );
 
-            console.log(this.player1Image);
-            console.log(this.player2Image);
-
-            console.log(winningToken);
+            console.log(winningToken.victoire);
 
             // Si l'objet est trouvé, récupérez le son de victoire et jouez-le
             if (winningToken && winningToken.victoire) {
