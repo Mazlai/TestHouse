@@ -28,10 +28,7 @@ const images = [
      son:"./audio/p4/oof.mp3",
      victoire:"./audio/p4/oof.mp3"},
 
-    {src: "./images/p4/tokens/y0nn.png", 
-     son:"./audio/p4/oof.mp3",
-     victoire:"./audio/p4/oof.mp3"},
-
+    {src: "./images/p4/tokens/y0nn.png", son:"./audio/p4/y0nn.m4a", victoire:"./audio/p4/y0nnvictory.m4a"},
     {src: "./images/p4/tokens/le_vé.jpg", son:"./audio/p4/victorcucurbitace.mp3", victoire:"./audio/p4victory/victorvictory.mp3"},
 
     {src: "./images/p4/tokens/blatte.png", 
