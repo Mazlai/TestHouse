@@ -92,7 +92,8 @@ footer {
     height: 100%;
     top: 0;
     left: 0;
-    background-image: url('../images/home/tower.gif');
+    background-image: url('../images/home/house.jpg');
+    background-position: center;
     background-size: cover;
     z-index: 1; /* Image animée en dessous de l'écran de chargement */
 }
