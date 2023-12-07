@@ -14,6 +14,36 @@ body {
   height: 100vh;
 }
 
+.background-elements {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.background-elements::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #ffcc00, #ff66b2);
+  clip-path: polygon(0 0, 100% 25%, 100% 100%, 0% 75%);
+}
+
+#particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Mettez-le en arrière-plan */
+}
+
 /************************| Page d'accueil, sélection des jetons, règles et thèmes |************************/
 
 /* Page d'accueil, de la sélection des jetons, des règles et des thèmes*/
@@ -163,7 +193,6 @@ body.theme2, .home.theme2, .token-selection.theme2, .rules.theme2, .theme-option
 #victory-message {
   border-radius: 10px;
 }
-
 
 /* Grille de jeu */
 #game {
