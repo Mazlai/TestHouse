@@ -44,3 +44,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+const easterEgg = new Konami("https://mazlai.github.io/infos-mfernandez")

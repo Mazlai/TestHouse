@@ -37,7 +37,7 @@ function moveFrog() {
     frog.style.left = randomX + 'px';
     frog.style.top = randomY + 'px';
 
-    setTimeout(moveFrog, 1000); // Déplacer la grenouille toutes les secondes
+    requestAnimationFrame(() => moveFrog(frog));
 }
 
 function startAnimation() {
