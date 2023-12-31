@@ -59,18 +59,10 @@ const images = [
      victoire:"./audio/p4/oof.mp3"},
 
     {src: "./images/p4/tokens/coutax.jpeg", son:"./audio/p4/ouipouet_du_fion.mp3", victoire:"./audio/p4victory/pouetvictoire.mp3"},
-
-    {src: "./images/p4/tokens/josh.jpg", 
-     son:"./audio/p4/choosewhistle.mp3",
-     victoire:"./audio/p4victory/whistlevictory.mp3"},
-
+    {src: "./images/p4/tokens/josh.jpg", son:"./audio/p4/choosewhistle.mp3", victoire:"./audio/p4victory/whistlevictory.mp3"},
     {src: "./images/p4/tokens/jagercar.JPG", son:"./audio/p4/enzolasalle.m4a", victoire:"./audio/p4victory/enzovictory.m4a"},
     {src: "./images/p4/tokens/hugeface.jpg", son:"./audio/p4/tilian_sus.wav", victoire:"./audio/p4victory/tilian_victory.wav"},
-
-    {src: "./images/p4/tokens/de-oof.png", 
-     son:"./audio/p4/oof.mp3",
-     victoire:"./audio/p4/oof.mp3"},
-
+    {src: "./images/p4/tokens/de-oof.png", son:"./audio/p4/oof.mp3", victoire:"./audio/p4/oof.mp3"},
     {src: "./images/p4/tokens/sqlvoielactee.png", son:"./audio/p4/lnchoose.mp3", victoire:"./audio/p4victory/lnvictory.mp3"},
     {src: "./images/p4/tokens/chine.png", son:"./audio/p4/hai-soncroissant.mp3", victoire:"./audio/p4victory/hai-sonvictory.mp3"},
     {src: "./images/p4/tokens/psedjango.png", son:"./audio/p4/pabloraciste.mp3", victoire:"./audio/p4victory/pablovictory.mp3"},
