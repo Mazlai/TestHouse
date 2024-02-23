@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
   /*----------| Événements |----------*/
 
   playButton.addEventListener('click', function() {
-    // Cache la page d'accueil et affiche la sélection des jetons
+    // Cache la page d'accueil et affiche le mode de jeu
     homePage.style.display = 'none';
     modeSelectionPage.style.display = 'block';
   });
