@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const playerTurn = document.getElementById('player-turn');
   const victoryMessage = document.getElementById('victory-message');
   const afterWin = document.querySelector('.after-win');
+  const modeSelectionPage = document.querySelector('.mode-selection');
 
   // Variables boutons et textes
   const playerMessage = document.getElementById('player-message');
@@ -28,9 +29,12 @@ document.addEventListener('DOMContentLoaded', function() {
   const secondThemeBtn = document.getElementById('theme2');
   const startGameButton = document.getElementById('start-game');
   const undoButton = document.getElementById('undoButton');
+  const modeNormalButton = document.getElementById('mode-normal');
+  const modeCustomButton = document.getElementById('mode-custom');
   const returnToHomeFromTokenSelectionBtn = document.getElementById('return-to-home-from-token-selection');
   const returnToHomeFromThemesBtn = document.getElementById('return-to-home-from-themes');
   const returnToHomeFromRulesBtn = document.getElementById('return-to-home-from-rules');
+  const returnToHomeFromModeBtn = document.getElementById('return-to-home-from-mode');
 
   const restartButton = document.getElementById('restart');
   const returnToHomeFromGameBtn = document.getElementById('return-to-home-from-game');
@@ -50,12 +54,60 @@ document.addEventListener('DOMContentLoaded', function() {
   themeOptions.style.display = 'none';
   afterWin.style.display = 'none';
   victoryMessage.style.display = 'none';
+  modeSelectionPage.style.display = 'none';
 
   /*----------| Événements |----------*/
 
   playButton.addEventListener('click', function() {
     // Cache la page d'accueil et affiche la sélection des jetons
     homePage.style.display = 'none';
+    modeSelectionPage.style.display = 'block';
+  });
+
+  modeNormalButton.addEventListener('click', function() {
+    modeSelectionPage.style.display = 'none';
+    
+    // Images pré-sélectionnées
+    const images = [
+      { src: "./images/p4/tokens/rouge.jpg", son: "./audio/p4/oof.mp3", victoire: "./audio/p4/oof.mp3" },
+      { src: "./images/p4/tokens/jaune.jpg", son: "./audio/p4/oof.mp3", victoire: "./audio/p4/oof.mp3" }
+    ];
+
+    // Récupérer les chemins d'images pour les joueurs 1 et 2
+    const player1Image = images[0].src;
+    const player2Image = images[1].src;
+
+    // Créer une instance de Puissance 4 avec les images pré-sélectionnées
+    const p4 = new P4('#game', player1Image, player2Image);
+
+    // Afficher la page de jeu
+    gamePage.style.display = 'block';
+    playerTurn.style.visibility = 'visible';
+    gameElement.classList.add('has-feet');
+
+    // Événements lorsque le bouton de redémarrage est cliqué
+    restartButton.addEventListener('click', function() {
+      p4.createGrid();
+      afterWin.style.display = 'none';
+      gameElement.classList.remove('disabled-div'); 
+      playerTurn.style.visibility = 'visible';
+      victoryMessage.style.display = 'none';
+    });
+
+    // Événement pour le bouton Retour depuis la grille de jeu
+    returnToHomeFromGameBtn.addEventListener('click', function() {
+      p4.resetGame();
+      gamePage.style.display = 'none';
+      afterWin.style.display = 'none';
+      gameElement.classList.remove('disabled-div');
+      homePage.style.display = 'block';
+      victoryMessage.style.display = 'none';
+    });
+    
+  });
+
+  modeCustomButton.addEventListener('click', function() {
+    modeSelectionPage.style.display = 'none';
     choosePage.style.display = 'block';
 
     player1TokenImage = null;
@@ -64,8 +116,13 @@ document.addEventListener('DOMContentLoaded', function() {
     createTokens();
   });
 
-  startGameButton.addEventListener('click', function() {
 
+  returnToHomeFromModeBtn.addEventListener('click', function() {
+    modeSelectionPage.style.display = 'none';
+    homePage.style.display = 'block';
+  });
+
+  startGameButton.addEventListener('click', function() {
     // Affiche la grille et le changement de joueur et les pieds de la grille
     const p4 = new P4('#game', player1TokenImage, player2TokenImage);
 
@@ -204,6 +261,7 @@ document.addEventListener('DOMContentLoaded', function() {
     choosePage.className = `token-selection ${theme}`;
     rulesPage.className = `rules ${theme}`;
     themeOptions.className = `theme-options ${theme}`;
+    modeSelectionPage.className = `mode-selection ${theme}`;
 
     // Change le thème des boutons
     playButton.className = theme;
@@ -216,6 +274,9 @@ document.addEventListener('DOMContentLoaded', function() {
     secondThemeBtn.className = theme;
     startGameButton.className = theme;
     undoButton.className = theme;
+    modeNormalButton.className = theme;
+    modeCustomButton.className = theme;
+    returnToHomeFromModeBtn.className = theme;
     returnToHomeFromTokenSelectionBtn.className = theme;
     returnToHomeFromRulesBtn.className = theme;
     returnToHomeFromThemesBtn.className = theme;

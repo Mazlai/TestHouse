@@ -47,7 +47,7 @@ body {
 /************************| Page d'accueil, sélection des jetons, règles et thèmes |************************/
 
 /* Page d'accueil, de la sélection des jetons, des règles et des thèmes*/
-.home, .token-selection, .rules, .theme-options {
+.home, .mode-selection, .token-selection, .rules, .theme-options {
   margin: 20px;
   padding: 20px;
   border-radius: 10px;
@@ -56,14 +56,14 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.home h1, .token-selection h1, .rules h1, .theme-options h1 {
+.home h1, .mode-selection h1, .token-selection h1, .rules h1, .theme-options h1 {
   color: white;
   font-family: 'Kalam', cursive;
   font-size: 36px;
   margin-bottom: 20px;
 }
 
-.home button, .token-selection button, .rules button, .theme-options button{
+.home button, .mode-selection button, .token-selection button, .rules button, .theme-options button{
   background-color: #fff; /* Blanc */
   color: #4CAF50;
   font-family: 'Kalam', cursive;
@@ -76,7 +76,7 @@ body {
   transition: background-color 0.3s ease-in-out;
 }
 
-.home button:hover, .token-selection button:hover, .rules button:hover, .theme-options button:hover {
+.home button:hover, .mode-selection button:hover, .token-selection button:hover, .rules button:hover, .theme-options button:hover {
   background-color: #4CAF50;
   color: white;
 }
@@ -115,32 +115,32 @@ body.default {
   background-color: #ffffaf;
 }
 
-.home.default, .token-selection.default, .rules.default .theme-options.default {
+.home.default, .mode-selection.default, .token-selection.default, .rules.default .theme-options.default {
   background-color: #4CAF50;
 }
 
-body.theme1, .home.theme1, .token-selection.theme1, .rules.theme1, .theme-options.theme1 {
+body.theme1, .home.theme1, .mode-selection.theme1, .token-selection.theme1, .rules.theme1, .theme-options.theme1 {
   background-color: #3498db;
 }
 
-.home button.theme1, .token-selection button.theme1, .rules button.theme1, .theme-options button.theme1, #audioControls button.theme1 {
+.home button.theme1, .mode-selection button.theme1, .token-selection button.theme1, .rules button.theme1, .theme-options button.theme1, #audioControls button.theme1 {
   color: #3498db;
 }
 
-.home button.theme1:hover, .token-selection button.theme1:hover, .rules button.theme1:hover, .theme-options button.theme1:hover, #audioControls button.theme1:hover {
+.home button.theme1:hover, .mode-selection button.theme1:hover, .token-selection button.theme1:hover, .rules button.theme1:hover, .theme-options button.theme1:hover, #audioControls button.theme1:hover {
   background-color: #3498db;
   color:white;
 }
 
-body.theme2, .home.theme2, .token-selection.theme2, .rules.theme2, .theme-options.theme2 {
+body.theme2, .home.theme2, .mode-selection.theme2, .token-selection.theme2, .rules.theme2, .theme-options.theme2 {
   background-color: #e74c3c;
 }
 
-.home button.theme2, .token-selection button.theme2, .rules button.theme2, .theme-options button.theme2, #audioControls button.theme2 {
+.home button.theme2, .mode-selection button.theme2, .token-selection button.theme2, .rules button.theme2, .theme-options button.theme2, #audioControls button.theme2 {
   color: #e74c3c;
 }
 
-.home button.theme2:hover, .token-selection button.theme2:hover, .rules button.theme2:hover, .theme-options button.theme2:hover, #audioControls button.theme2:hover {
+.home button.theme2:hover, .mode-selection button.theme2:hover, .token-selection button.theme2:hover, .rules button.theme2:hover, .theme-options button.theme2:hover, #audioControls button.theme2:hover {
   background-color: #e74c3c;
   color:white;
 }
