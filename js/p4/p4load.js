@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
       victoryMessage.style.display = 'none';
     });
 
-    // Événement pour le bouton Retour depius la grille
+    // Événement pour le bouton Retour depuis la grille
     returnToHomeFromGameBtn.addEventListener('click', function() {
       p4.resetGame();
       gamePage.style.display = 'none';
