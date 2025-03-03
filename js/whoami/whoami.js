@@ -19,13 +19,25 @@ const domElements = {
     player1: document.getElementById('player1'),
     player2: document.getElementById('player2'),
     selectedCharacter1: document.getElementById('selectedCharacter1'),
-    selectedCharacter2: document.getElementById('selectedCharacter2')
+    selectedCharacter2: document.getElementById('selectedCharacter2'),
+    gamesButton: document.getElementById('gamesButton'),
+    revealCardButton: document.getElementById('revealCardButton'),
+    revealCardContent: document.getElementById('revealCardContent'),
+    cardOverlay: document.getElementById('cardOverlay'),
+    closeCardButton: document.getElementById('closeCardButton')
 };
+
+// Ajouter le bouton à la div gamesButton
+domElements.gamesButton.appendChild(revealCardButton);
+
+// Mettre à jour l'objet domElements pour inclure le nouveau bouton
+domElements.revealCardButton = revealCardButton;
 
 // Fonction pour mettre à jour l'affichage du joueur actif
 function updateCurrentPlayerDisplay() {
     domElements.currentPlayer.innerText = `Tour du Joueur ${currentPlayer}`;
     domElements.currentPlayer.style.display = 'block';
+    updateRevealButtonVisibility();
 }
 
 // Fonction pour mélanger un tableau
@@ -51,7 +63,7 @@ function loadCharacters() {
 }
 
 // Fonction pour créer une carte de personnage
-function createCharacterCard(character, containerId) {
+function createCharacterCard(character) {
     const card = document.createElement('div');
     card.className = 'card'; 
     card.dataset.name = character.name;
@@ -76,7 +88,7 @@ function displayCharacterCards(characters, containerId) {
     const fragment = document.createDocumentFragment();
 
     shuffledCharacters.forEach(character => {
-        const card = createCharacterCard(character, containerId);
+        const card = createCharacterCard(character);
         
         card.addEventListener('click', () => {
             if (card.classList.contains('revealed')) return;
@@ -172,6 +184,28 @@ function showGameBoard() {
     }
 }
 
+// Fonction pour afficher ou masquer le bouton "Dévoiler ma carte" en fonction du joueur actuel
+function updateRevealButtonVisibility() {
+    domElements.revealCardButton.style.display = 'block';
+}
+
+// Fonction pour gérer l'affichage de la carte secrète
+function revealSecretCard() {
+    const characterToReveal = currentPlayer === 1 ? pickedCard1 : pickedCard2;
+    
+    if (!characterToReveal) return;
+    
+    // Demander confirmation avant de révéler la carte
+    if (confirm(`Joueur ${currentPlayer}, êtes-vous sûr de vouloir voir votre carte secrète ?`)) {
+        // Mettre à jour le contenu de la carte
+        domElements.cardOverlay.style.display = 'flex';
+        domElements.revealCardContent.innerHTML = `
+            <img src="${characterToReveal.path}" alt="${characterToReveal.name}" class="reveal-character-image" />
+            <p>${characterToReveal.name}</p>
+        `;
+    }
+}
+
 // Fonction pour afficher/cacher le bouton "Deviner"
 function updateGuessButtonVisibility() {
     const remainingCards = document.querySelectorAll('.card-to-find:not(.secret)');
@@ -204,28 +238,18 @@ function enableGuessingMode() {
 
 // Fonction pour afficher un message lorsque la devinette est incorrecte
 function displayIncorrectGuessMessage(guessedName, correctName) {
-    const overlay = document.createElement('div');
-    const message = document.createElement('div');
+    const overlay = document.getElementById('incorrectGuessOverlay');
+    const messageContent = document.getElementById('lose-message-content');
     
-    overlay.className = 'guess-overlay';
-    message.className = 'guess-message';
-
-    message.innerHTML = `
-        <p id="lose-message-title">❌ Raté !</p>
-        <p id="lose-message-content">Vous avez deviné "${guessedName}", mais la bonne réponse était "${correctName}".</p>
-        <p id="lose-message-conclusion">Le joueur adversaire remporte la partie!</p>
-    `;
-
-    overlay.appendChild(message);
-    document.body.appendChild(overlay);
-
-    // Créer une animation CSS dynamique
-    const style = document.createElement('style');
-    document.head.appendChild(style);
-
+    // Mettre à jour le contenu du message
+    messageContent.textContent = `Vous avez deviné "${guessedName}", mais la bonne réponse était "${correctName}".`;
+    
+    // Afficher l'overlay
+    overlay.style.display = 'flex';
+    
     // Supprime le message après un délai
     setTimeout(() => {
-        document.body.removeChild(overlay);
+        overlay.style.display = 'none';
         window.location.href = "https://mazlai.github.io/TestHouse/whoami.html";
     }, 2000);
 }
@@ -328,6 +352,14 @@ function initializeEventListeners() {
         restoreBoardState();
         domElements.switchButton.style.display = 'none';
     });
+
+    // Dans initializeEventListeners(), ajouter :
+    domElements.closeCardButton.addEventListener('click', () => {
+        domElements.cardOverlay.style.display = 'none';
+    });
+
+    // Nouvel écouteur pour le bouton "Dévoiler ma carte"
+    domElements.revealCardButton.addEventListener('click', revealSecretCard);
 
     // Gestion des règles du jeu
     document.getElementById('rulesButton').addEventListener('click', () => {

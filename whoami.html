@@ -57,6 +57,25 @@
         <div id="gamesButton">
             <button id="switchButton" style="display: none;">Valider & Switch</button>
             <button id="guessButton" style="display: none;">Deviner</button>
+            <button id="revealCardButton" style="display: none;">Dévoiler ma carte</button>
+        </div>
+
+        <div id="incorrectGuessOverlay" class="guess-overlay" style="display: none;">
+            <div class="guess-message">
+                <p id="lose-message-title">❌ Raté !</p>
+                <p id="lose-message-content"></p>
+                <p id="lose-message-conclusion">Le joueur adversaire remporte la partie!</p>
+            </div>
+        </div>
+
+        <div id="cardOverlay" class="card-overlay" style="display: none;">
+            <div class="reveal-card-container">
+                <h3>Votre carte secrète</h3>
+                <div id="revealCardContent" class="reveal-card">
+                    <!-- Le contenu de la carte sera inséré ici dynamiquement -->
+                </div>
+                <button id="closeCardButton" class="close-button">Fermer</button>
+            </div>
         </div>
 
         <div id="winMessage" class="hidden">
