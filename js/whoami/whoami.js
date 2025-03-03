@@ -64,6 +64,8 @@ function createCharacterCard(character, containerId) {
         </div>
     `;
 
+    console.log(character);
+
     return card;
 }
 
