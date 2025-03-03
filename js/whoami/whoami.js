@@ -40,7 +40,7 @@ function shuffleArray(array) {
 
 // Fonction pour récupérer les personnages depuis le fichier JSON
 function loadCharacters() {
-    fetch("/js/whoami/characters.json")
+    fetch("https://mazlai.github.io/TestHouse/js/whoami/characters.json")
         .then(response => response.json())
         .then(data => {
             allCharacters = data.characters;
@@ -162,7 +162,7 @@ function showGameBoard() {
         updateCurrentPlayerDisplay();
     } else {
         // Récupérer les personnages si pas encore chargés
-        fetch("/js/whoami/characters.json")
+        fetch("https://mazlai.github.io/TestHouse/js/whoami/characters.json")
             .then(response => response.json())
             .then(data => {
                 allCharacters = data.characters;
@@ -193,13 +193,65 @@ function enableGuessingMode() {
             const correctName = currentPlayer === 1 ? pickedCard2.name : pickedCard1.name;
 
             if (guessedName === correctName) {
+                 // Le joueur actuel a deviné correctement
                 handleVictory(currentPlayer);
             } else {
-                alert('Raté ! Ce n\'était pas la bonne carte.');
-                // On pourrait améliorer ceci en montrant un message plus élégant
+                // Le joueur actuel s'est trompé, l'adversaire gagne
+                // const winningPlayer = currentPlayer === 1 ? 2 : 1;
+                displayIncorrectGuessMessage(remainingCard.dataset.name, correctName);
             }
         });
     }
+}
+
+// Fonction pour afficher un message lorsque la devinette est incorrecte
+function displayIncorrectGuessMessage(guessedName, correctName) {
+    const overlay = document.createElement('div');
+    overlay.className = 'guess-overlay';
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+    overlay.style.display = 'flex';
+    overlay.style.justifyContent = 'center';
+    overlay.style.alignItems = 'center';
+    overlay.style.zIndex = '1000';
+
+    const message = document.createElement('div');
+    message.className = 'guess-message';
+    message.style.backgroundColor = '#FF5252';
+    message.style.padding = '20px';
+    message.style.borderRadius = '10px';
+    message.style.color = 'white';
+    message.style.textAlign = 'center';
+    message.style.boxShadow = '0 0 20px rgba(0, 0, 0, 0.5)';
+    message.style.animation = 'fadeIn 0.5s';
+    message.innerHTML = `
+        <p style="font-size: 24px; margin: 0 0 10px 0;">❌ Raté !</p>
+        <p style="font-size: 18px; margin: 0;">Vous avez deviné "${guessedName}", mais la bonne réponse était "${correctName}".</p>
+        <p style="font-size: 18px; margin: 10px 0 0 0;">Le joueur adversaire remporte la partie!</p>
+    `;
+
+    overlay.appendChild(message);
+    document.body.appendChild(overlay);
+
+    // Créer une animation CSS dynamique
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Supprime le message après un délai
+    setTimeout(() => {
+        document.body.removeChild(overlay);
+        window.location.href = "https://mazlai.github.io/TestHouse/whoami.html";
+    }, 2000);
 }
 
 // Fonction pour gérer la victoire
@@ -225,7 +277,7 @@ function handleVictory(winningPlayer) {
     if (!quitButton.hasAttribute('listener')) {
         quitButton.setAttribute('listener', 'true');
         quitButton.addEventListener('click', () => {
-            window.location.href = '/';
+            window.location.href = 'https://mazlai.github.io/TestHouse/whoami.html';
         });
     }
 }
