@@ -7,7 +7,7 @@ class CyberEasterEgg {
                 .' ':  ||  |:  |  '       ' || | : | |: : |   .  '           .   :.  .     .    .      .   .      . .  .   .           .    .       .        .
                         ''  ||  |  ' |   *    ' : | | :| |*|  :   :               :|    .   .      .    *     .     .    .      .   .   .    ;    .   .      .  
                 *    *       '  |  : :  |  .      ' ' :| | :| . : :         *   :.||        .      .    .     .     .    .      .   .    - --+- -  .  -+-
-                    .'            | |  |  : .:|       ' | || | : |: |          | ||      .           .           .           .           .  !       +  .
+                    .'            | |  |  : .:|       ' | || | : |: |          | ||       .           .           .           .           .  !       +  .
             '          .         + '  |  :  .: .         '| | : :| :    .   |:| ||           .            .   . *    .   .    .            .   . *    .   .
                 .                 .    ' *|  || :       '    | | :| | :      |:| |       .         _  .          .          .    +     .          .          . 
         .                .          .        || |.: *          | || : :     :|||           .(_)          .            .            .       :
@@ -30,13 +30,6 @@ class CyberEasterEgg {
 
     PROTOCOLE DE NAVIGATION SPATIALE ACTIVE
     SYSTEME DE CONNEXION: EN LIGNE
-            `,
-            `
-   ⭐ CONFIGURATION DE L'ENVIRONNEMENT COSMIQUE ⭐
-
-    RELAIS SATELLITE: CONNECTE
-    TRAJECTOIRE DE TRANSMISSION: VERROUILLE
-    FREQUENCE DE COMMUNICATION: ETABLIE
             `,
             `
    🔒 PROTOCOLE DE SECURITE SPATIAL ACTIVE 🚨
