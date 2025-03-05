@@ -4,8 +4,8 @@ document.getElementById('color-home').addEventListener('input', function() {
 
     console.log(selectedColor);
 
-    if (selectedColor === '#a2023c') {
-        window.location.href = 'ascii.html?hex=a2023c';
+    if (selectedColor === '#a2025c') {
+        window.location.href = 'ascii.html?hex=a2025c';
     } else if(selectedColor !== "#000000") {
         yearHexColor.style.color = "#ffcc00";
     }

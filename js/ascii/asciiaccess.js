@@ -4,7 +4,7 @@ var isAccessAllowed = false;
 var urlParams = new URLSearchParams(window.location.search);
 var hexColor = urlParams.get('hex');
 
-if (hexColor === 'a2023c') {
+if (hexColor === 'a2025c') {
     isAccessAllowed = true;
 }
 

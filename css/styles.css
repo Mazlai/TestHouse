@@ -123,6 +123,15 @@ footer {
     animation: pulse 2s infinite;
 }
 
+.hover-h {
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.hover-h:hover {
+    color: #ffcc00;
+}
+
 .overlay {
     position: fixed;
     top: 0;

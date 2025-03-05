@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Zone Cyber Secrète</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: #00ff88;
+            font-family: 'monospace', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            perspective: 1000px;
+        }
+        .holographic-text {
+            font-size: 3rem;
+            text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88;
+            animation: flicker 1.5s infinite alternate;
+        }
+        .sub-text {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            opacity: 0.7;
+        }
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 136, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 136, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .play-button {
+            background-color: #00ff88;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            font-family: 'monospace';
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        .play-button:hover {
+            background-color: white;
+            box-shadow: 0 0 10px #00ff88;
+        }
+        #game-grid {
+            display: none;
+            grid-template-columns: repeat(20, 30px);
+            grid-template-rows: repeat(20, 30px);
+            background-image: 
+                linear-gradient(rgba(0, 255, 136, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 136, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            border: 2px solid #00ff88;
+            box-shadow: 0 0 20px #00ff88;
+        }
+        .cell {
+            width: 30px;
+            height: 30px;
+            border: 1px solid rgba(0, 255, 136, 0.1);
+            transition: background-color 0.2s ease;
+        }
+        .traced {
+            background-color: rgba(0, 255, 136, 0.5);
+        }
+        .player {
+            background-color: #00ff88;
+        }
+        .target {
+            background-color: red;
+        }
+        .obstacle {
+            background-color: rgba(255, 0, 0, 0.5);
+        }
+        #status {
+            color: #00ff88;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        @keyframes flicker {
+            0% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        .terminal-cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background-color: #00ff88;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-overlay"></div>
+    <div class="container">
+        <div class="holographic-text">
+            ZONE CYBER SECRETE<span class="terminal-cursor"></span>
+        </div>
+        <div class="sub-text">
+            Bienvenue dans l'espace numérique clandestin
+        </div>
+        <div id="status"></div>
+        <div id="game-grid"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const messages = [
+                'Initialisation du protocole...',
+                'Vérification des systèmes en cours...',
+                'Accès sécurisé confirmé.',
+                'Bienvenue, utilisateur anonyme.'
+            ];
+
+            const subText = document.querySelector('.sub-text');
+            const statusElement = document.getElementById('status');
+            const gameGrid = document.getElementById('game-grid');
+            let messageIndex = 0;
+
+            function typeMessage() {
+                if (messageIndex < messages.length) {
+                    subText.textContent = messages[messageIndex];
+                    messageIndex++;
+                    setTimeout(typeMessage, 2000);
+                } else {
+                    // Ajouter le bouton Jouer
+                    const playButton = document.createElement('button');
+                    playButton.textContent = 'Commencer la mission';
+                    playButton.classList.add('play-button');
+                    playButton.addEventListener('click', initializeGame);
+                    subText.parentNode.appendChild(playButton);
+                }
+            }
+
+            typeMessage();
+
+            const GRID_SIZE = 20;
+            let playerPosition = { x: 0, y: 0 };
+            let targetPosition = { x: GRID_SIZE - 1, y: GRID_SIZE - 1 };
+            let tracedCells = new Set();
+            let obstacles = [];
+
+            function initializeGame() {
+                // Masquer les messages et le bouton
+                subText.style.display = 'none';
+                document.querySelector('.play-button')?.remove();
+                
+                // Afficher la grille
+                gameGrid.style.display = 'grid';
+                statusElement.textContent = "Connectez le réseau : Tracez un chemin jusqu'à la cible !";
+
+                // Créer la grille
+                gameGrid.innerHTML = ''; // Nettoyer la grille précédente
+                for (let y = 0; y < GRID_SIZE; y++) {
+                    for (let x = 0; x < GRID_SIZE; x++) {
+                        const cell = document.createElement('div');
+                        cell.classList.add('cell');
+                        cell.dataset.x = x;
+                        cell.dataset.y = y;
+                        gameGrid.appendChild(cell);
+                    }
+                }
+
+                // Générer des obstacles
+                generateObstacles();
+
+                // Position initiale du joueur
+                updateCellState(playerPosition.x, playerPosition.y, 'player');
+                
+                // Position de la cible
+                updateCellState(targetPosition.x, targetPosition.y, 'target');
+            }
+
+            function generateObstacles() {
+                const obstacleCount = 20; // Nombre d'obstacles
+                obstacles = [];
+
+                while (obstacles.length < obstacleCount) {
+                    const x = Math.floor(Math.random() * GRID_SIZE);
+                    const y = Math.floor(Math.random() * GRID_SIZE);
+
+                    // Éviter de placer des obstacles sur le joueur, la cible ou les obstacles existants
+                    if (
+                        (x !== playerPosition.x || y !== playerPosition.y) &&
+                        (x !== targetPosition.x || y !== targetPosition.y) &&
+                        !obstacles.some(obs => obs.x === x && obs.y === y)
+                    ) {
+                        obstacles.push({ x, y });
+                        updateCellState(x, y, 'obstacle');
+                    }
+                }
+            }
+
+            function updateCellState(x, y, className) {
+                const cell = document.querySelector(`.cell[data-x="${x}"][data-y="${y}"]`);
+                cell.classList.add(className);
+            }
+
+            function isObstacle(x, y) {
+                return obstacles.some(obs => obs.x === x && obs.y === y);
+            }
+
+            function moveTo(x, y) {
+                // Vérifier si le mouvement est valide (adjacent et non diagonal)
+                const dx = Math.abs(x - playerPosition.x);
+                const dy = Math.abs(y - playerPosition.y);
+                
+                // Vérifier les limites de la grille et les obstacles
+                if (
+                    x >= 0 && x < GRID_SIZE && 
+                    y >= 0 && y < GRID_SIZE && 
+                    (dx === 1 && dy === 0) || (dx === 0 && dy === 1)
+                ) {
+                    // Vérifier les obstacles
+                    if (isObstacle(x, y)) {
+                        // Collision avec un obstacle
+                        statusElement.textContent = "🚨 Collision ! Recommencez la mission.";
+                        setTimeout(initializeGame, 2000);
+                        return;
+                    }
+
+                    // Marquer l'ancienne position comme tracée
+                    const oldCell = document.querySelector(`.cell[data-x="${playerPosition.x}"][data-y="${playerPosition.y}"]`);
+                    oldCell.classList.remove('player');
+                    oldCell.classList.add('traced');
+                    tracedCells.add(`${playerPosition.x},${playerPosition.y}`);
+
+                    // Mettre à jour la position du joueur
+                    playerPosition = { x, y };
+                    updateCellState(x, y, 'player');
+
+                    // Vérifier si le joueur a atteint la cible
+                    if (x === targetPosition.x && y === targetPosition.y) {
+                        statusElement.textContent = "🎉 Réseau connecté ! Mission accomplie !";
+                        setTimeout(() => {
+                            alert("Félicitations ! Vous avez réussi à connecter le réseau !");
+                        }, 1000);
+                    }
+                }
+            }
+
+            // Gestion des événements clavier
+            document.addEventListener('keydown', (event) => {
+                if (gameGrid.style.display !== 'none') {
+                    switch(event.key) {
+                        case 'ArrowUp':
+                            moveTo(playerPosition.x, playerPosition.y - 1);
+                            break;
+                        case 'ArrowDown':
+                            moveTo(playerPosition.x, playerPosition.y + 1);
+                            break;
+                        case 'ArrowLeft':
+                            moveTo(playerPosition.x - 1, playerPosition.y);
+                            break;
+                        case 'ArrowRight':
+                            moveTo(playerPosition.x + 1, playerPosition.y);
+                            break;
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
